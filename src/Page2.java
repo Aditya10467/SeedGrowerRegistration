@@ -205,7 +205,7 @@ public class Page2 extends JPanel {
         JLabel challanDetailsLabel = new JLabel("Challan Details");
         add(challanDetailsLabel);
         layout.putConstraint(SpringLayout.NORTH, challanDetailsLabel, 0, SpringLayout.NORTH, lotNumberLabel);
-        layout.putConstraint(SpringLayout.WEST, challanDetailsLabel, 900 + leftMargin, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.WEST, challanDetailsLabel, 1000 + leftMargin, SpringLayout.WEST, this);
 
         JTextArea challanDetailsArea = new JTextArea();
         challanDetailsArea.setRows(3);
@@ -214,7 +214,7 @@ public class Page2 extends JPanel {
         challanDetailsArea.setWrapStyleWord(true);
         add(challanDetailsArea);
         layout.putConstraint(SpringLayout.NORTH, challanDetailsArea, 20, SpringLayout.NORTH, tagNumberLabel);
-        layout.putConstraint(SpringLayout.WEST, challanDetailsArea, 900 + leftMargin, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.WEST, challanDetailsArea, 1000 + leftMargin, SpringLayout.WEST, this);
 
 
 
@@ -247,7 +247,7 @@ public class Page2 extends JPanel {
         JLabel packagingAreaLabel = new JLabel("Packaging details");
         add(packagingAreaLabel);
         layout.putConstraint(SpringLayout.NORTH, packagingAreaLabel, 0, SpringLayout.NORTH, lotNumberLabel);
-        layout.putConstraint(SpringLayout.WEST, packagingAreaLabel, 700 + leftMargin, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.WEST, packagingAreaLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
         JTextArea packagingArea = new JTextArea();
         packagingArea.setRows(3);
@@ -256,7 +256,7 @@ public class Page2 extends JPanel {
         packagingArea.setWrapStyleWord(true);
         add(packagingArea);
         layout.putConstraint(SpringLayout.NORTH, packagingArea, 20, SpringLayout.NORTH, tagNumberLabel);
-        layout.putConstraint(SpringLayout.WEST, packagingArea, 700 + leftMargin, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.WEST, packagingArea, 750 + leftMargin, SpringLayout.WEST, this);
 
 
 
