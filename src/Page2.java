@@ -1,9 +1,14 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 
 public class Page2 extends JPanel {
     private Page1 page1;
+    private DefaultTableModel tableModel;
 
     public Page2(Page1 page1) {
         this.page1 = page1;
@@ -30,7 +35,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, sourceOfSeedsLabel, leftMargin, SpringLayout.WEST, this);
 
         JTextField sourceOfSeedsField = new JTextField(10);
-        add(sourceOfSeedsField);
+       add(sourceOfSeedsField);
         layout.putConstraint(SpringLayout.NORTH, sourceOfSeedsField, 5, SpringLayout.SOUTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, sourceOfSeedsField, leftMargin, SpringLayout.WEST, this);
 
@@ -197,7 +202,21 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, addedTagNumbersArea, 20, SpringLayout.NORTH, tagNumberLabel);
         layout.putConstraint(SpringLayout.WEST, addedTagNumbersArea, 500 + leftMargin, SpringLayout.WEST, this);
 
-// Row 6
+        JLabel challanDetailsLabel = new JLabel("Challan Details");
+        add(challanDetailsLabel);
+        layout.putConstraint(SpringLayout.NORTH, challanDetailsLabel, 0, SpringLayout.NORTH, lotNumberLabel);
+        layout.putConstraint(SpringLayout.WEST, challanDetailsLabel, 900 + leftMargin, SpringLayout.WEST, this);
+
+        JTextArea challanDetailsArea = new JTextArea();
+        challanDetailsArea.setRows(3);
+        challanDetailsArea.setColumns(20);
+        challanDetailsArea.setLineWrap(true);
+        challanDetailsArea.setWrapStyleWord(true);
+        add(challanDetailsArea);
+        layout.putConstraint(SpringLayout.NORTH, challanDetailsArea, 20, SpringLayout.NORTH, tagNumberLabel);
+        layout.putConstraint(SpringLayout.WEST, challanDetailsArea, 900 + leftMargin, SpringLayout.WEST, this);
+
+
 
         // Row 6
         JLabel weightPerBagLabel = new JLabel("Weight per bag in Kg:");
@@ -224,6 +243,20 @@ public class Page2 extends JPanel {
         add(addBagButton);
         layout.putConstraint(SpringLayout.NORTH, addBagButton, 5, SpringLayout.SOUTH, numberOfBagsLabel);
         layout.putConstraint(SpringLayout.WEST, addBagButton, 420 + leftMargin, SpringLayout.WEST, this);
+
+        JLabel packagingAreaLabel = new JLabel("Packaging details");
+        add(packagingAreaLabel);
+        layout.putConstraint(SpringLayout.NORTH, packagingAreaLabel, 0, SpringLayout.NORTH, lotNumberLabel);
+        layout.putConstraint(SpringLayout.WEST, packagingAreaLabel, 700 + leftMargin, SpringLayout.WEST, this);
+
+        JTextArea packagingArea = new JTextArea();
+        packagingArea.setRows(3);
+        packagingArea.setColumns(20);
+        packagingArea.setLineWrap(true);
+        packagingArea.setWrapStyleWord(true);
+        add(packagingArea);
+        layout.putConstraint(SpringLayout.NORTH, packagingArea, 20, SpringLayout.NORTH, tagNumberLabel);
+        layout.putConstraint(SpringLayout.WEST, packagingArea, 700 + leftMargin, SpringLayout.WEST, this);
 
 
 
@@ -283,6 +316,33 @@ public class Page2 extends JPanel {
             JOptionPane.showMessageDialog(Page2.this, "Data to save:\nField 1: " + textField1Value);
         });
 
+        String[] columnNames = {"Source of Seeds", "RO / Unit Office", "Month of Sowing", "Week of Sowing", "Crop", "Variety", "Source Class", "Class to be produced", "Plot No", "District", "Block", "Mouza", "CDF", "Area (hectare)", "Expected Date of Harvest", "Edit", "Remove"};
+        tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 15 || column == 16; // Allow editing only for "Edit" and "Remove" columns
+            }
+        };
+        JTable table = new JTable(tableModel);
+        table.getColumnModel().getColumn(15).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(15).setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumnModel().getColumn(16).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(16).setCellEditor(new ButtonEditor(new JCheckBox()));
+        JScrollPane scrollPane = new JScrollPane(table); // Wrap the table in a scroll pane
+        add(scrollPane);
+        layout.putConstraint(SpringLayout.NORTH, scrollPane, verticalSpacing, SpringLayout.SOUTH, saveButton);
+        layout.putConstraint(SpringLayout.WEST, scrollPane, leftMargin, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.EAST, scrollPane, -leftMargin, SpringLayout.EAST, this);
+        layout.putConstraint(SpringLayout.SOUTH, scrollPane, -10, SpringLayout.SOUTH, this);
+        // Set preferred size for the panel to enable scrolling
+        Dimension panelPreferredSize = new Dimension(800, 600); // Adjust width and height as needed
+        setPreferredSize(panelPreferredSize);
+
+        JButton addButton = new JButton("Add");
+        add(addButton);
+        layout.putConstraint(SpringLayout.NORTH, addButton, verticalSpacing, SpringLayout.SOUTH, scrollPane);
+        layout.putConstraint(SpringLayout.WEST, addButton, leftMargin, SpringLayout.WEST, this);
+
 
 
         // Add a resize listener to adjust the title bar width
@@ -291,5 +351,89 @@ public class Page2 extends JPanel {
                 titleBar.setBounds(0, 0, getWidth(), 50);
             }
         });
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Draw thicker orange border
+        g.setColor(new Color(243, 142, 57)); // Orange color
+        int thickness = 5; // Thickness of the border
+        int width = getWidth();
+        int height = getHeight();
+        // Draw top border
+        g.fillRect(0, 0, width, thickness);
+        // Draw left border
+        g.fillRect(0, 0, thickness, height);
+        // Draw right border
+        g.fillRect(width - thickness, 0, thickness, height);
+    }
+
+    // Custom cell renderer for rendering buttons
+    class ButtonRenderer extends JButton implements TableCellRenderer {
+
+        public ButtonRenderer() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            setText((value == null) ? "" : value.toString());
+            return this;
+        }
+    }
+
+    // Custom cell editor for editing buttons
+    class ButtonEditor extends DefaultCellEditor {
+        protected JButton button;
+        private String label;
+        private boolean isPushed;
+
+        public ButtonEditor(JCheckBox checkBox) {
+            super(checkBox);
+            button = new JButton();
+            button.setOpaque(true);
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    fireEditingStopped();
+                }
+            });
+        }
+
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+            if (isSelected) {
+                button.setForeground(table.getSelectionForeground());
+                button.setBackground(table.getSelectionBackground());
+            } else {
+                button.setForeground(table.getForeground());
+                button.setBackground(UIManager.getColor("Button.background"));
+            }
+            label = (value == null) ? "" : value.toString();
+            button.setText(label);
+            isPushed = true;
+            return button;
+        }
+
+        public Object getCellEditorValue() {
+            if (isPushed) {
+                // Perform edit or remove action based on column
+                if (label.equals("Edit")) {
+                    // Perform edit action
+                    // You can implement the edit action here
+                } else if (label.equals("Remove")) {
+                    // Perform remove action
+                    // You can implement the remove action here
+                }
+            }
+            isPushed = false;
+            return new String(label);
+        }
+
+        public boolean stopCellEditing() {
+            isPushed = false;
+            return super.stopCellEditing();
+        }
+
+        protected void fireEditingStopped() {
+            super.fireEditingStopped();
+        }
     }
 }
