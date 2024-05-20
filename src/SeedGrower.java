@@ -1,9 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class SeedGrower extends JFrame {
 
@@ -31,30 +27,12 @@ public class SeedGrower extends JFrame {
         // Add main panel to frame
         add(mainPanel);
 
-        // Initialize database
-//        initializeDatabase();
-
         // Set frame to full screen but with window decorations
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize the frame
         setVisible(true);
     }
 
-//    private void initializeDatabase() {
-//        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:formdata.db");
-//             Statement stmt = conn.createStatement()) {
-//            String sql = "CREATE TABLE IF NOT EXISTS formdata (\n"
-//                    + " id integer PRIMARY KEY AUTOINCREMENT,\n"
-//                    + " page1_input text NOT NULL,\n"
-//                    + " page2_input text NOT NULL\n"
-//                    + ");";
-//            stmt.execute(sql);
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(this, "Error initializing database: " + e.getMessage());
-//        }
-//    }
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(SeedGrower::new);
     }
 }
-

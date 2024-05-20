@@ -2,141 +2,176 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Page1 extends JPanel {
-    private JTextField nameField,pinField,emailField,mobileField,alternateMobileField;
+    private JTextField nameField, pinField, emailField, mobileField, alternateMobileField;
     private JTextField fatherField;
     private JTextField houseField;
-    private JComboBox relationField,districtField,blockField,mouzaField,identificationField;
+    private JComboBox<String> relationField, districtField, blockField, mouzaField, identificationField;
     private TitleBarPanel titleBar;
 
     public Page1() {
-        setLayout(null);
+        SpringLayout layout = new SpringLayout();
+        setLayout(layout);
         setBackground(new Color(255, 255, 255));
 
         // Create and add the custom title bar
         titleBar = new TitleBarPanel("Basic Profile of Seed Grower (Seed Grower)");
-        titleBar.setBounds(0, 0, getWidth(), 50);
         add(titleBar);
+        layout.putConstraint(SpringLayout.NORTH, titleBar, 0, SpringLayout.NORTH, this);
+        layout.putConstraint(SpringLayout.WEST, titleBar, 0, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.EAST, titleBar, 0, SpringLayout.EAST, this);
+        layout.putConstraint(SpringLayout.SOUTH, titleBar, 50, SpringLayout.NORTH, this);
 
-        //Name
+        // Add more spacing between the title bar and the first row of components
+        int verticalSpacing = 20; // Increase the vertical spacing to 20 pixels
+        int leftMargin = 100; // Additional left margin to center the form
+
+        // Name
         JLabel nameLabel = new JLabel("Name");
-        nameLabel.setBounds(150, 80, 100, 30); // Adjusting position due to title bar
         add(nameLabel);
+        layout.putConstraint(SpringLayout.NORTH, nameLabel, verticalSpacing, SpringLayout.SOUTH, titleBar);
+        layout.putConstraint(SpringLayout.WEST, nameLabel, leftMargin, SpringLayout.WEST, this);
 
         nameField = new JTextField();
-        nameField.setBounds(150, 110, 200, 30); // Adjusting position due to title bar
+        nameField.setPreferredSize(new Dimension(200, 30));
         add(nameField);
+        layout.putConstraint(SpringLayout.NORTH, nameField, 5, SpringLayout.SOUTH, nameLabel);
+        layout.putConstraint(SpringLayout.WEST, nameField, leftMargin, SpringLayout.WEST, this);
 
-        //Father/Husband/Organisation
+        // Father/Husband/Organisation
         JLabel fatherLabel = new JLabel("Father/Husband/Organisation");
-        fatherLabel.setBounds(400, 80, 200, 30); // Adjusting position due to title bar
         add(fatherLabel);
+        layout.putConstraint(SpringLayout.NORTH, fatherLabel, 0, SpringLayout.NORTH, nameLabel);
+        layout.putConstraint(SpringLayout.WEST, fatherLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
         fatherField = new JTextField();
-        fatherField.setBounds(400, 110, 200, 30); // Adjusting position due to title bar
+        fatherField.setPreferredSize(new Dimension(200, 30));
         add(fatherField);
+        layout.putConstraint(SpringLayout.NORTH, fatherField, 5, SpringLayout.SOUTH, fatherLabel);
+        layout.putConstraint(SpringLayout.WEST, fatherField, 250 + leftMargin, SpringLayout.WEST, this);
 
-        //Relation
+        // Relation
         JLabel relationLabel = new JLabel("Relation");
-        relationLabel.setBounds(650, 80, 200, 30); // Adjusting position due to title bar
         add(relationLabel);
+        layout.putConstraint(SpringLayout.NORTH, relationLabel, 0, SpringLayout.NORTH, nameLabel);
+        layout.putConstraint(SpringLayout.WEST, relationLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
         relationField = new JComboBox<>();
-        relationField.setBounds(650, 110, 200, 30);
-        relationField.setBackground(new Color(255, 255, 255));// Adjusting position due to title bar
+        relationField.setPreferredSize(new Dimension(200, 30));
         add(relationField);
+        layout.putConstraint(SpringLayout.NORTH, relationField, 5, SpringLayout.SOUTH, relationLabel);
+        layout.putConstraint(SpringLayout.WEST, relationField, 500 + leftMargin, SpringLayout.WEST, this);
 
-        //House No/LandMark
+        // House No/LandMark
         JLabel houseLabel = new JLabel("House No/LandMark");
-        houseLabel.setBounds(900, 80, 200, 30); // Adjusting position due to title bar
         add(houseLabel);
+        layout.putConstraint(SpringLayout.NORTH, houseLabel, 0, SpringLayout.NORTH, nameLabel);
+        layout.putConstraint(SpringLayout.WEST, houseLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
         houseField = new JTextField();
-        houseField.setBounds(900, 110, 200, 30); // Adjusting position due to title bar
+        houseField.setPreferredSize(new Dimension(200, 30));
         add(houseField);
+        layout.putConstraint(SpringLayout.NORTH, houseField, 5, SpringLayout.SOUTH, houseLabel);
+        layout.putConstraint(SpringLayout.WEST, houseField, 750 + leftMargin, SpringLayout.WEST, this);
 
-
-        //District
+        // District
         JLabel districtLabel = new JLabel("District");
-        districtLabel.setBounds(150, 170, 100, 30); // Adjusting position due to title bar
         add(districtLabel);
+        layout.putConstraint(SpringLayout.NORTH, districtLabel, 40, SpringLayout.SOUTH, nameField);
+        layout.putConstraint(SpringLayout.WEST, districtLabel, leftMargin, SpringLayout.WEST, this);
 
         districtField = new JComboBox<>();
-        districtField.setBounds(150, 200, 200, 30);
-        districtField.setBackground(new Color(255, 255, 255));// Adjusting position due to title bar
+        districtField.setPreferredSize(new Dimension(200, 30));
         add(districtField);
+        layout.putConstraint(SpringLayout.NORTH, districtField, 5, SpringLayout.SOUTH, districtLabel);
+        layout.putConstraint(SpringLayout.WEST, districtField, leftMargin, SpringLayout.WEST, this);
 
-        //Block
+        // Block
         JLabel blockLabel = new JLabel("Block");
-        blockLabel.setBounds(400, 170, 200, 30); // Adjusting position due to title bar
         add(blockLabel);
+        layout.putConstraint(SpringLayout.NORTH, blockLabel, 0, SpringLayout.NORTH, districtLabel);
+        layout.putConstraint(SpringLayout.WEST, blockLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
         blockField = new JComboBox<>();
-        blockField.setBounds(400, 200, 200, 30);
-        blockField.setBackground(new Color(255, 255, 255));// Adjusting position due to title bar
+        blockField.setPreferredSize(new Dimension(200, 30));
         add(blockField);
+        layout.putConstraint(SpringLayout.NORTH, blockField, 5, SpringLayout.SOUTH, blockLabel);
+        layout.putConstraint(SpringLayout.WEST, blockField, 250 + leftMargin, SpringLayout.WEST, this);
 
-        //Mouza
+        // Mouza
         JLabel mouzaLabel = new JLabel("Mouza");
-        mouzaLabel.setBounds(650, 170, 200, 30); // Adjusting position due to title bar
         add(mouzaLabel);
+        layout.putConstraint(SpringLayout.NORTH, mouzaLabel, 0, SpringLayout.NORTH, districtLabel);
+        layout.putConstraint(SpringLayout.WEST, mouzaLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
         mouzaField = new JComboBox<>();
-        mouzaField.setBounds(650, 200, 200, 30);
-        mouzaField.setBackground(new Color(255, 255, 255));// Adjusting position due to title bar
+        mouzaField.setPreferredSize(new Dimension(200, 30));
         add(mouzaField);
+        layout.putConstraint(SpringLayout.NORTH, mouzaField, 5, SpringLayout.SOUTH, mouzaLabel);
+        layout.putConstraint(SpringLayout.WEST, mouzaField, 500 + leftMargin, SpringLayout.WEST, this);
 
-        //Pin Code
+        // Pin Code
         JLabel pinLabel = new JLabel("Pin Code (Optional)");
-        pinLabel.setBounds(150, 270, 200, 30); // Adjusting position due to title bar
         add(pinLabel);
+        layout.putConstraint(SpringLayout.NORTH, pinLabel, 40, SpringLayout.SOUTH, districtField);
+        layout.putConstraint(SpringLayout.WEST, pinLabel, leftMargin, SpringLayout.WEST, this);
 
         pinField = new JTextField();
-        pinField.setBounds(150, 300, 450, 30); // Adjusting position due to title bar
+        pinField.setPreferredSize(new Dimension(450, 30));
         add(pinField);
+        layout.putConstraint(SpringLayout.NORTH, pinField, 5, SpringLayout.SOUTH, pinLabel);
+        layout.putConstraint(SpringLayout.WEST, pinField, leftMargin, SpringLayout.WEST, this);
 
-        //Email
+        // Email
         JLabel emailLabel = new JLabel("Email Id (Optional)");
-        emailLabel.setBounds(650, 270, 200, 30); // Adjusting position due to title bar
         add(emailLabel);
+        layout.putConstraint(SpringLayout.NORTH, emailLabel, 0, SpringLayout.NORTH, pinLabel);
+        layout.putConstraint(SpringLayout.WEST, emailLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
         emailField = new JTextField();
-        emailField.setBounds(650, 300, 450, 30); // Adjusting position due to title bar
+        emailField.setPreferredSize(new Dimension(450, 30));
         add(emailField);
+        layout.putConstraint(SpringLayout.NORTH, emailField, 5, SpringLayout.SOUTH, emailLabel);
+        layout.putConstraint(SpringLayout.WEST, emailField, 500 + leftMargin, SpringLayout.WEST, this);
 
-
-        //Mobile
+        // Mobile
         JLabel mobileLabel = new JLabel("Mobile No.");
-        mobileLabel.setBounds(150, 370, 200, 30); // Adjusting position due to title bar
         add(mobileLabel);
+        layout.putConstraint(SpringLayout.NORTH, mobileLabel, 40, SpringLayout.SOUTH, pinField);
+        layout.putConstraint(SpringLayout.WEST, mobileLabel, leftMargin, SpringLayout.WEST, this);
 
         mobileField = new JTextField();
-        mobileField.setBounds(150, 400, 450, 30); // Adjusting position due to title bar
+        mobileField.setPreferredSize(new Dimension(450, 30));
         add(mobileField);
+        layout.putConstraint(SpringLayout.NORTH, mobileField, 5, SpringLayout.SOUTH, mobileLabel);
+        layout.putConstraint(SpringLayout.WEST, mobileField, leftMargin, SpringLayout.WEST, this);
 
-        //Alternate Mobile
+        // Alternate Mobile
         JLabel alternateMobileLabel = new JLabel("Alternate Mobile No. (Optional)");
-        alternateMobileLabel.setBounds(650, 370, 200, 30); // Adjusting position due to title bar
         add(alternateMobileLabel);
+        layout.putConstraint(SpringLayout.NORTH, alternateMobileLabel, 0, SpringLayout.NORTH, mobileLabel);
+        layout.putConstraint(SpringLayout.WEST, alternateMobileLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
         alternateMobileField = new JTextField();
-        alternateMobileField.setBounds(650, 400, 450, 30); // Adjusting position due to title bar
+        alternateMobileField.setPreferredSize(new Dimension(450, 30));
         add(alternateMobileField);
+        layout.putConstraint(SpringLayout.NORTH, alternateMobileField, 5, SpringLayout.SOUTH, alternateMobileLabel);
+        layout.putConstraint(SpringLayout.WEST, alternateMobileField, 500 + leftMargin, SpringLayout.WEST, this);
 
-        //Identification
+        // Identification
         JLabel identificationLabel = new JLabel("Identification Type");
-        identificationLabel.setBounds(150, 470, 200, 30); // Adjusting position due to title bar
         add(identificationLabel);
+        layout.putConstraint(SpringLayout.NORTH, identificationLabel, 40, SpringLayout.SOUTH, mobileField);
+        layout.putConstraint(SpringLayout.WEST, identificationLabel, leftMargin, SpringLayout.WEST, this);
 
         identificationField = new JComboBox<>();
-        identificationField.setBounds(150, 500, 450, 30);
-        identificationField.setBackground(new Color(255, 255, 255));// Adjusting position due to title bar
+        identificationField.setPreferredSize(new Dimension(450, 30));
         add(identificationField);
+        layout.putConstraint(SpringLayout.NORTH, identificationField, 5, SpringLayout.SOUTH, identificationLabel);
+        layout.putConstraint(SpringLayout.WEST, identificationField, leftMargin, SpringLayout.WEST, this);
 
-
-
-
+        // Next Button
         JButton nextButton = new JButton("Next");
-        nextButton.setBounds(600, 570, 100, 30);
+        nextButton.setPreferredSize(new Dimension(100, 30));
         nextButton.setBackground(new Color(243, 142, 57));
         nextButton.setForeground(new Color(253, 253, 253));
         nextButton.addActionListener(e -> {
@@ -144,6 +179,8 @@ public class Page1 extends JPanel {
             cl.show(getParent(), "Page 2");
         });
         add(nextButton);
+        layout.putConstraint(SpringLayout.NORTH, nextButton, 20, SpringLayout.SOUTH, identificationField);
+        layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, nextButton, 0, SpringLayout.HORIZONTAL_CENTER, this);
 
         // Add a resize listener to adjust the title bar width
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -171,9 +208,7 @@ public class Page1 extends JPanel {
         g.fillRect(width - thickness, 0, thickness, height);
     }
 
-
     public String getTextField1Value() {
         return nameField.getText();
     }
 }
-
