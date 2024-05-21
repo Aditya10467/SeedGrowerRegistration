@@ -8,7 +8,7 @@ public class Page1 extends JPanel {
     private JComboBox<String> relationField, districtField, blockField, mouzaField, identificationField;
     private TitleBarPanel titleBar;
 
-    public Page1() {
+    public Page1(JPanel mainPanel) {
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
         setBackground(new Color(255, 255, 255));

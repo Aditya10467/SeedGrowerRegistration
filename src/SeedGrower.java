@@ -1,38 +1,35 @@
 import javax.swing.*;
 import java.awt.*;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class SeedGrower extends JFrame {
 
-    private CardLayout cardLayout;
-    private JPanel mainPanel;
-
     public SeedGrower() {
-        // Set up the frame
-        setTitle("Multi-Page Form");
-        getContentPane().setBackground(new Color(255,255,255));
+        setTitle("Seed Grower");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 400);
+        setSize(1000, 700);
 
-        // Initialize CardLayout and main panel
-        cardLayout = new CardLayout();
-        mainPanel = new JPanel(cardLayout);
-
-        // Create pages
-        Page1 page1 = new Page1();
+        // Main container panel
+        JPanel mainPanel = new JPanel(new CardLayout());
+        Page1 page1 = new Page1(mainPanel);
         Page2 page2 = new Page2(page1);
 
+        JScrollPane scrollPane = new JScrollPane(page2);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        // Adding both Page1 and the scrollable Page2 to the CardLayout
         mainPanel.add(page1, "Page 1");
-        mainPanel.add(page2, "Page 2");
+        mainPanel.add(scrollPane, "Page 2");
 
-        // Add main panel to frame
         add(mainPanel);
-
-        // Set frame to full screen but with window decorations
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize the frame
         setVisible(true);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(SeedGrower::new);
+        SwingUtilities.invokeLater(() -> new SeedGrower());
     }
 }
+
