@@ -8,14 +8,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 
+
 public class Page2 extends JPanel {
     private Page1 page1;
     private DefaultTableModel tableModel;
+
+    JLabel sourceOfSeedsLabel,roUnitOfficeLabel;
 
     public Page2(Page1 page1) {
         this.page1 = page1;
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
+        setBackground(new Color(250, 231, 209));
 
         // Create and add the custom title bar
         TitleBarPanel titleBar = new TitleBarPanel("Crop Registration Details of the Seed Grower");
@@ -25,23 +29,23 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.EAST, titleBar, 0, SpringLayout.EAST, this);
         layout.putConstraint(SpringLayout.SOUTH, titleBar, 50, SpringLayout.NORTH, this);
 
-        int verticalSpacing = 20; // Vertical spacing between components
+        int verticalSpacing = 15; // Vertical spacing between components
         int horizontalSpacing = 30; // Horizontal spacing between components
         int topMargin = 40; // Top margin after title bar
         int leftMargin = 100; // Left margin to center the form
 
         // Row 1
-        JLabel sourceOfSeedsLabel = new JLabel("Source Of Seeds:");
+        sourceOfSeedsLabel = new JLabel("Source Of Seeds:");
         add(sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.NORTH, sourceOfSeedsLabel, topMargin, SpringLayout.SOUTH, titleBar);
         layout.putConstraint(SpringLayout.WEST, sourceOfSeedsLabel, leftMargin, SpringLayout.WEST, this);
 
         JTextField sourceOfSeedsField = new JTextField(10);
-       add(sourceOfSeedsField);
+        add(sourceOfSeedsField);
         layout.putConstraint(SpringLayout.NORTH, sourceOfSeedsField, 5, SpringLayout.SOUTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, sourceOfSeedsField, leftMargin, SpringLayout.WEST, this);
 
-        JLabel roUnitOfficeLabel = new JLabel("RO / Unit Office:");
+        roUnitOfficeLabel = new JLabel("RO / Unit Office:");
         add(roUnitOfficeLabel);
         layout.putConstraint(SpringLayout.NORTH, roUnitOfficeLabel, 0, SpringLayout.NORTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, roUnitOfficeLabel, 250 + leftMargin, SpringLayout.WEST, this);
@@ -186,6 +190,8 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, tagNumberField, 250 + leftMargin, SpringLayout.WEST, this);
 
         JButton addTagButton = new JButton("+");
+        addTagButton.setForeground(new Color(255,255,255));
+        addTagButton.setBackground(new Color(243, 142, 57));
         add(addTagButton);
         layout.putConstraint(SpringLayout.NORTH, addTagButton, 5, SpringLayout.SOUTH, tagNumberLabel);
         layout.putConstraint(SpringLayout.WEST, addTagButton, 420 + leftMargin, SpringLayout.WEST, this);
@@ -193,7 +199,7 @@ public class Page2 extends JPanel {
         JLabel tagNumberAreaLabel = new JLabel("Added Tag Number:");
         add(tagNumberAreaLabel);
         layout.putConstraint(SpringLayout.NORTH, tagNumberAreaLabel, 0, SpringLayout.NORTH, lotNumberLabel);
-        layout.putConstraint(SpringLayout.WEST, tagNumberAreaLabel, 500 + leftMargin, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.WEST, tagNumberAreaLabel, 40, SpringLayout.EAST, addTagButton);
 
         JTextArea addedTagNumbersArea = new JTextArea();
         addedTagNumbersArea.setRows(3);
@@ -202,12 +208,26 @@ public class Page2 extends JPanel {
         addedTagNumbersArea.setWrapStyleWord(true);
         add(addedTagNumbersArea);
         layout.putConstraint(SpringLayout.NORTH, addedTagNumbersArea, 20, SpringLayout.NORTH, tagNumberLabel);
-        layout.putConstraint(SpringLayout.WEST, addedTagNumbersArea, 500 + leftMargin, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.WEST, addedTagNumbersArea, 40, SpringLayout.EAST, addTagButton);
+
+        JLabel packagingAreaLabel = new JLabel("Packaging details");
+        add(packagingAreaLabel);
+        layout.putConstraint(SpringLayout.NORTH, packagingAreaLabel, 0, SpringLayout.NORTH, lotNumberLabel);
+        layout.putConstraint(SpringLayout.WEST, packagingAreaLabel, 20, SpringLayout.EAST, addedTagNumbersArea);
+
+        JTextArea packagingArea = new JTextArea();
+        packagingArea.setRows(3);
+        packagingArea.setColumns(20);
+        packagingArea.setLineWrap(true);
+        packagingArea.setWrapStyleWord(true);
+        add(packagingArea);
+        layout.putConstraint(SpringLayout.NORTH, packagingArea, 20, SpringLayout.NORTH, tagNumberLabel);
+        layout.putConstraint(SpringLayout.WEST, packagingArea, 20, SpringLayout.EAST, addedTagNumbersArea);
 
         JLabel challanDetailsLabel = new JLabel("Challan Details");
         add(challanDetailsLabel);
         layout.putConstraint(SpringLayout.NORTH, challanDetailsLabel, 0, SpringLayout.NORTH, lotNumberLabel);
-        layout.putConstraint(SpringLayout.WEST, challanDetailsLabel, 900 + leftMargin, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.WEST, challanDetailsLabel, 20, SpringLayout.EAST, packagingArea);
 
         JTextArea challanDetailsArea = new JTextArea();
         challanDetailsArea.setRows(3);
@@ -216,7 +236,7 @@ public class Page2 extends JPanel {
         challanDetailsArea.setWrapStyleWord(true);
         add(challanDetailsArea);
         layout.putConstraint(SpringLayout.NORTH, challanDetailsArea, 20, SpringLayout.NORTH, tagNumberLabel);
-        layout.putConstraint(SpringLayout.WEST, challanDetailsArea, 900 + leftMargin, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.WEST, challanDetailsArea, 20, SpringLayout.EAST, packagingArea);
 
 
 
@@ -242,24 +262,11 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, numberOfBagsField, 250 + leftMargin, SpringLayout.WEST, this);
 
         JButton addBagButton = new JButton("+");
+        addBagButton.setForeground(new Color(255,255,255));
+        addBagButton.setBackground(new Color(243, 142, 57));
         add(addBagButton);
         layout.putConstraint(SpringLayout.NORTH, addBagButton, 5, SpringLayout.SOUTH, numberOfBagsLabel);
         layout.putConstraint(SpringLayout.WEST, addBagButton, 420 + leftMargin, SpringLayout.WEST, this);
-
-        JLabel packagingAreaLabel = new JLabel("Packaging details");
-        add(packagingAreaLabel);
-        layout.putConstraint(SpringLayout.NORTH, packagingAreaLabel, 0, SpringLayout.NORTH, lotNumberLabel);
-        layout.putConstraint(SpringLayout.WEST, packagingAreaLabel, 700 + leftMargin, SpringLayout.WEST, this);
-
-        JTextArea packagingArea = new JTextArea();
-        packagingArea.setRows(3);
-        packagingArea.setColumns(20);
-        packagingArea.setLineWrap(true);
-        packagingArea.setWrapStyleWord(true);
-        add(packagingArea);
-        layout.putConstraint(SpringLayout.NORTH, packagingArea, 20, SpringLayout.NORTH, tagNumberLabel);
-        layout.putConstraint(SpringLayout.WEST, packagingArea, 700 + leftMargin, SpringLayout.WEST, this);
-
 
 
         // Row 7
@@ -280,41 +287,35 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, dateLabel, 0, SpringLayout.NORTH, billReceiptLabel);
         layout.putConstraint(SpringLayout.WEST, dateLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
-//        JFormattedTextField dateField = new JFormattedTextField(new SimpleDateFormat("dd-MM-yyyy"));
-//        dateField.setColumns(10);
+
         JDateChooser dateField=new JDateChooser();
         add(dateField);
         layout.putConstraint(SpringLayout.NORTH, dateField, 5, SpringLayout.SOUTH, dateLabel);
         layout.putConstraint(SpringLayout.WEST, dateField, 250 + leftMargin, SpringLayout.WEST, this);
 
         JButton addDateButton = new JButton("+");
+        addDateButton.setForeground(new Color(255,255,255));
+        addDateButton.setBackground(new Color(243, 142, 57));
         add(addDateButton);
         layout.putConstraint(SpringLayout.NORTH, addDateButton, 5, SpringLayout.SOUTH, dateLabel);
         layout.putConstraint(SpringLayout.WEST, addDateButton, 420 + leftMargin, SpringLayout.WEST, this);
 
 
 
-        // Bottom Buttons
-        JButton backButton = new JButton("< BACK");
-        add(backButton);
-        layout.putConstraint(SpringLayout.NORTH, backButton, verticalSpacing, SpringLayout.SOUTH, billReceiptField);
-        layout.putConstraint(SpringLayout.WEST, backButton, 500 + leftMargin, SpringLayout.WEST, this);
+        // Add Crop Button
 
-        JButton saveButton = new JButton("SAVE");
-        add(saveButton);
-        layout.putConstraint(SpringLayout.NORTH, saveButton, 0, SpringLayout.NORTH, backButton);
-        layout.putConstraint(SpringLayout.WEST, saveButton, horizontalSpacing, SpringLayout.EAST, backButton);
+        JButton addCropButton = new JButton("ADD CROP");
+        addCropButton.setForeground(new Color(255,255,255));
+        addCropButton.setBackground(new Color(243, 142, 57));
+        add(addCropButton);
+        layout.putConstraint(SpringLayout.NORTH, addCropButton, verticalSpacing+5, SpringLayout.NORTH, billReceiptField);
+        layout.putConstraint(SpringLayout.WEST, addCropButton, 500+leftMargin, SpringLayout.WEST, this);
 
         // Add visibility constraints for the buttons
-        backButton.setVisible(true);
-        saveButton.setVisible(true);
 
-        backButton.addActionListener(e -> {
-            CardLayout cl = (CardLayout) getParent().getLayout();
-            cl.show(getParent(), "Page 1");
-        });
 
-        saveButton.addActionListener(e -> {
+
+        addCropButton.addActionListener(e -> {
             String textField1Value = page1.getTextField1Value();
             JOptionPane.showMessageDialog(Page2.this, "Data to save:\nField 1: " + textField1Value);
         });
@@ -332,19 +333,33 @@ public class Page2 extends JPanel {
         table.getColumnModel().getColumn(16).setCellRenderer(new ButtonRenderer());
         table.getColumnModel().getColumn(16).setCellEditor(new ButtonEditor(new JCheckBox()));
         JScrollPane scrollPane = new JScrollPane(table); // Wrap the table in a scroll pane
+        scrollPane.setPreferredSize(new Dimension(800, 75)); // Adjust the height as needed
         add(scrollPane);
-        layout.putConstraint(SpringLayout.NORTH, scrollPane, verticalSpacing, SpringLayout.SOUTH, saveButton);
+        layout.putConstraint(SpringLayout.NORTH, scrollPane, verticalSpacing, SpringLayout.SOUTH, addCropButton);
         layout.putConstraint(SpringLayout.WEST, scrollPane, leftMargin, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.EAST, scrollPane, -leftMargin, SpringLayout.EAST, this);
-        layout.putConstraint(SpringLayout.SOUTH, scrollPane, -10, SpringLayout.SOUTH, this);
-        // Set preferred size for the panel to enable scrolling
-        Dimension panelPreferredSize = new Dimension(800, 600); // Adjust width and height as needed
-        setPreferredSize(panelPreferredSize);
 
-        JButton addButton = new JButton("Add");
-        add(addButton);
-        layout.putConstraint(SpringLayout.NORTH, addButton, verticalSpacing, SpringLayout.SOUTH, scrollPane);
-        layout.putConstraint(SpringLayout.WEST, addButton, leftMargin, SpringLayout.WEST, this);
+        JButton backButton = new JButton("BACK");
+        backButton.setBackground(new Color(243, 142, 57));
+        backButton.setForeground(new Color(255,255,255));
+        add(backButton);
+        layout.putConstraint(SpringLayout.NORTH, backButton, verticalSpacing, SpringLayout.SOUTH, scrollPane);
+        layout.putConstraint(SpringLayout.WEST, backButton, 450 + leftMargin, SpringLayout.WEST, this);
+
+        JButton saveButton = new JButton("SAVE");
+        saveButton.setBackground(new Color(243, 142, 57));
+        saveButton.setForeground(new Color(255,255,255));
+        add(saveButton);
+        layout.putConstraint(SpringLayout.NORTH, saveButton, verticalSpacing, SpringLayout.SOUTH, scrollPane);
+        layout.putConstraint(SpringLayout.WEST, saveButton, horizontalSpacing, SpringLayout.EAST, backButton);
+
+        backButton.addActionListener(e -> {
+            CardLayout cl = (CardLayout) getParent().getLayout();
+            cl.show(getParent(), "Page 1");
+        });
+
+
+
 
 
 
@@ -376,6 +391,8 @@ public class Page2 extends JPanel {
         g.fillRect(0, 0, thickness, height);
         // Draw right border
         g.fillRect(width - thickness, 0, thickness, height);
+        //Draw bottom border
+        g.fillRect(0, height - thickness, width, thickness);
     }
 
     // Custom cell renderer for rendering buttons
