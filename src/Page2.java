@@ -40,7 +40,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, sourceOfSeedsLabel, topMargin, SpringLayout.SOUTH, titleBar);
         layout.putConstraint(SpringLayout.WEST, sourceOfSeedsLabel, leftMargin, SpringLayout.WEST, this);
 
-        JTextField sourceOfSeedsField = new JTextField(10);
+        JTextField sourceOfSeedsField = new JTextField(15);
         add(sourceOfSeedsField);
         layout.putConstraint(SpringLayout.NORTH, sourceOfSeedsField, 5, SpringLayout.SOUTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, sourceOfSeedsField, leftMargin, SpringLayout.WEST, this);
@@ -51,6 +51,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, roUnitOfficeLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
         JComboBox<String> roUnitOfficeComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        roUnitOfficeComboBox.setPreferredSize(new Dimension(150,20));
         add(roUnitOfficeComboBox);
         layout.putConstraint(SpringLayout.NORTH, roUnitOfficeComboBox, 5, SpringLayout.SOUTH, roUnitOfficeLabel);
         layout.putConstraint(SpringLayout.WEST, roUnitOfficeComboBox, 250 + leftMargin, SpringLayout.WEST, this);
@@ -61,6 +62,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, monthOfSowingLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
         JComboBox<String> monthOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        monthOfSowingComboBox.setPreferredSize(new Dimension(150,20));
         add(monthOfSowingComboBox);
         layout.putConstraint(SpringLayout.NORTH, monthOfSowingComboBox, 5, SpringLayout.SOUTH, monthOfSowingLabel);
         layout.putConstraint(SpringLayout.WEST, monthOfSowingComboBox, 500 + leftMargin, SpringLayout.WEST, this);
@@ -71,6 +73,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, weekOfSowingLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
         JComboBox<String> weekOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        weekOfSowingComboBox.setPreferredSize(new Dimension(150,20));
         add(weekOfSowingComboBox);
         layout.putConstraint(SpringLayout.NORTH, weekOfSowingComboBox, 5, SpringLayout.SOUTH, weekOfSowingLabel);
         layout.putConstraint(SpringLayout.WEST, weekOfSowingComboBox, 750 + leftMargin, SpringLayout.WEST, this);
@@ -82,6 +85,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, cropLabel, leftMargin, SpringLayout.WEST, this);
 
         JComboBox<String> cropComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        cropComboBox.setPreferredSize(new Dimension(150,20));
         add(cropComboBox);
         layout.putConstraint(SpringLayout.NORTH, cropComboBox, 5, SpringLayout.SOUTH, cropLabel);
         layout.putConstraint(SpringLayout.WEST, cropComboBox, leftMargin, SpringLayout.WEST, this);
@@ -92,6 +96,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, varietyLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
         JComboBox<String> varietyComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        varietyComboBox.setPreferredSize(new Dimension(150,20));
         add(varietyComboBox);
         layout.putConstraint(SpringLayout.NORTH, varietyComboBox, 5, SpringLayout.SOUTH, varietyLabel);
         layout.putConstraint(SpringLayout.WEST, varietyComboBox, 250 + leftMargin, SpringLayout.WEST, this);
@@ -102,6 +107,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, sourceClassLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
         JComboBox<String> sourceClassComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        sourceClassComboBox.setPreferredSize(new Dimension(150,20));
         add(sourceClassComboBox);
         layout.putConstraint(SpringLayout.NORTH, sourceClassComboBox, 5, SpringLayout.SOUTH, sourceClassLabel);
         layout.putConstraint(SpringLayout.WEST, sourceClassComboBox, 500 + leftMargin, SpringLayout.WEST, this);
@@ -112,6 +118,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, classToBeProducedLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
         JComboBox<String> classToBeProducedComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        classToBeProducedComboBox.setPreferredSize(new Dimension(150,20));
         add(classToBeProducedComboBox);
         layout.putConstraint(SpringLayout.NORTH, classToBeProducedComboBox, 5, SpringLayout.SOUTH, classToBeProducedLabel);
         layout.putConstraint(SpringLayout.WEST, classToBeProducedComboBox, 750 + leftMargin, SpringLayout.WEST, this);
@@ -122,7 +129,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, plotNoLabel, verticalSpacing, SpringLayout.SOUTH, cropComboBox);
         layout.putConstraint(SpringLayout.WEST, plotNoLabel, leftMargin, SpringLayout.WEST, this);
 
-        JTextField plotNoField = new JTextField(10);
+        JTextField plotNoField = new JTextField(15);
         add(plotNoField);
         layout.putConstraint(SpringLayout.NORTH, plotNoField, 5, SpringLayout.SOUTH, plotNoLabel);
         layout.putConstraint(SpringLayout.WEST, plotNoField, leftMargin, SpringLayout.WEST, this);
@@ -133,6 +140,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, districtLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
         JComboBox<String> districtComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        districtComboBox.setPreferredSize(new Dimension(150,20));
         add(districtComboBox);
         layout.putConstraint(SpringLayout.NORTH, districtComboBox, 5, SpringLayout.SOUTH, districtLabel);
         layout.putConstraint(SpringLayout.WEST, districtComboBox, 250 + leftMargin, SpringLayout.WEST, this);
@@ -143,6 +151,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, blockLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
         JComboBox<String> blockComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        blockComboBox.setPreferredSize(new Dimension(150,20));
         add(blockComboBox);
         layout.putConstraint(SpringLayout.NORTH, blockComboBox, 5, SpringLayout.SOUTH, blockLabel);
         layout.putConstraint(SpringLayout.WEST, blockComboBox, 500 + leftMargin, SpringLayout.WEST, this);
@@ -153,6 +162,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, mouzaLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
         JComboBox<String> mouzaComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        mouzaComboBox.setPreferredSize(new Dimension(150,20));
         add(mouzaComboBox);
         layout.putConstraint(SpringLayout.NORTH, mouzaComboBox, 5, SpringLayout.SOUTH, mouzaLabel);
         layout.putConstraint(SpringLayout.WEST, mouzaComboBox, 750 + leftMargin, SpringLayout.WEST, this);
@@ -163,7 +173,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, areaLabel, verticalSpacing, SpringLayout.SOUTH, plotNoField);
         layout.putConstraint(SpringLayout.WEST, areaLabel, leftMargin, SpringLayout.WEST, this);
 
-        JTextField areaField = new JTextField(10);
+        JTextField areaField = new JTextField(15);
         add(areaField);
         layout.putConstraint(SpringLayout.NORTH, areaField, 5, SpringLayout.SOUTH, areaLabel);
         layout.putConstraint(SpringLayout.WEST, areaField, leftMargin, SpringLayout.WEST, this);
@@ -174,7 +184,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, lotNumberLabel, verticalSpacing, SpringLayout.SOUTH, areaField);
         layout.putConstraint(SpringLayout.WEST, lotNumberLabel, leftMargin, SpringLayout.WEST, this);
 
-        JTextField lotNumberField = new JTextField(10);
+        JTextField lotNumberField = new JTextField(15);
         add(lotNumberField);
         layout.putConstraint(SpringLayout.NORTH, lotNumberField, 5, SpringLayout.SOUTH, lotNumberLabel);
         layout.putConstraint(SpringLayout.WEST, lotNumberField, leftMargin, SpringLayout.WEST, this);
@@ -184,7 +194,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, tagNumberLabel, 0, SpringLayout.NORTH, lotNumberLabel);
         layout.putConstraint(SpringLayout.WEST, tagNumberLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
-        JTextField tagNumberField = new JTextField(10);
+        JTextField tagNumberField = new JTextField(15);
         add(tagNumberField);
         layout.putConstraint(SpringLayout.NORTH, tagNumberField, 5, SpringLayout.SOUTH, tagNumberLabel);
         layout.putConstraint(SpringLayout.WEST, tagNumberField, 250 + leftMargin, SpringLayout.WEST, this);
@@ -246,7 +256,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, weightPerBagLabel, verticalSpacing, SpringLayout.SOUTH, lotNumberField);
         layout.putConstraint(SpringLayout.WEST, weightPerBagLabel, leftMargin, SpringLayout.WEST, this);
 
-        JTextField weightPerBagField = new JTextField(10);
+        JTextField weightPerBagField = new JTextField(15);
         add(weightPerBagField);
         layout.putConstraint(SpringLayout.NORTH, weightPerBagField, 5, SpringLayout.SOUTH, weightPerBagLabel);
         layout.putConstraint(SpringLayout.WEST, weightPerBagField, leftMargin, SpringLayout.WEST, this);
@@ -256,7 +266,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, numberOfBagsLabel, 0, SpringLayout.NORTH, weightPerBagLabel);
         layout.putConstraint(SpringLayout.WEST, numberOfBagsLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
-        JTextField numberOfBagsField = new JTextField(10);
+        JTextField numberOfBagsField = new JTextField(15);
         add(numberOfBagsField);
         layout.putConstraint(SpringLayout.NORTH, numberOfBagsField, 5, SpringLayout.SOUTH, numberOfBagsLabel);
         layout.putConstraint(SpringLayout.WEST, numberOfBagsField, 250 + leftMargin, SpringLayout.WEST, this);
@@ -289,6 +299,7 @@ public class Page2 extends JPanel {
 
 
         JDateChooser dateField=new JDateChooser();
+        dateField.setPreferredSize(new Dimension(150,20));
         add(dateField);
         layout.putConstraint(SpringLayout.NORTH, dateField, 5, SpringLayout.SOUTH, dateLabel);
         layout.putConstraint(SpringLayout.WEST, dateField, 250 + leftMargin, SpringLayout.WEST, this);
