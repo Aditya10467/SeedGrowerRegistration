@@ -11,7 +11,7 @@ public class Page1 extends JPanel {
     public Page1() {
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
-        setBackground(new Color(255, 255, 255));
+        setBackground(new Color(250, 231, 209));
 
         // Create and add the custom title bar
         titleBar = new TitleBarPanel("Basic Profile of Seed Grower (Seed Grower)");
