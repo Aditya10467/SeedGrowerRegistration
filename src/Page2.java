@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 public class Page2 extends JPanel {
     private Page1 page1;
     private DefaultTableModel tableModel;
+    private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-mm-dd");
 
     JLabel sourceOfSeedsLabel,roUnitOfficeLabel;
 
@@ -206,6 +207,8 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, addTagButton, 5, SpringLayout.SOUTH, tagNumberLabel);
         layout.putConstraint(SpringLayout.WEST, addTagButton, 420 + leftMargin, SpringLayout.WEST, this);
 
+
+
         JLabel tagNumberAreaLabel = new JLabel("Added Tag Number:");
         add(tagNumberAreaLabel);
         layout.putConstraint(SpringLayout.NORTH, tagNumberAreaLabel, 0, SpringLayout.NORTH, lotNumberLabel);
@@ -219,6 +222,26 @@ public class Page2 extends JPanel {
         add(addedTagNumbersArea);
         layout.putConstraint(SpringLayout.NORTH, addedTagNumbersArea, 20, SpringLayout.NORTH, tagNumberLabel);
         layout.putConstraint(SpringLayout.WEST, addedTagNumbersArea, 40, SpringLayout.EAST, addTagButton);
+
+
+        addTagButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String lotNumber=lotNumberField.getText();
+                String tagNumber=tagNumberField.getText();
+                String addedTagNumber="{"+lotNumber+","+tagNumber+"}";
+
+                if(addedTagNumbersArea.getText().isEmpty()){
+                    addedTagNumbersArea.append(addedTagNumber);
+                }else {
+                    addedTagNumbersArea.append(",");
+                    addedTagNumbersArea.append(addedTagNumber);
+                }
+
+
+
+            }
+        });
 
         JLabel packagingAreaLabel = new JLabel("Packaging details");
         add(packagingAreaLabel);
@@ -278,6 +301,23 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, addBagButton, 5, SpringLayout.SOUTH, numberOfBagsLabel);
         layout.putConstraint(SpringLayout.WEST, addBagButton, 420 + leftMargin, SpringLayout.WEST, this);
 
+        addBagButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int bagWeight=Integer.parseInt(weightPerBagField.getText());
+                int noOfBags=Integer.parseInt(numberOfBagsField.getText());
+
+                String packagingDetails="{"+bagWeight+","+noOfBags+"}";
+
+                if(packagingArea.getText().isEmpty()){
+                    packagingArea.append(packagingDetails);
+                }else {
+                    packagingArea.append(",");
+                    packagingArea.append(packagingDetails);
+                }
+            }
+        });
+
 
         // Row 7
 
@@ -310,6 +350,25 @@ public class Page2 extends JPanel {
         add(addDateButton);
         layout.putConstraint(SpringLayout.NORTH, addDateButton, 5, SpringLayout.SOUTH, dateLabel);
         layout.putConstraint(SpringLayout.WEST, addDateButton, 420 + leftMargin, SpringLayout.WEST, this);
+
+        addDateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String challanNo=billReceiptField.getText();
+                String date=dateFormat.format(dateField.getDate());
+
+                String addedTagNumber="{"+challanNo+","+date+"}";
+
+                if(challanDetailsArea.getText().isEmpty()){
+                    challanDetailsArea.append(addedTagNumber);
+                }else {
+                    challanDetailsArea.append(",");
+                    challanDetailsArea.append(addedTagNumber);
+                }
+
+
+            }
+        });
 
 
 
