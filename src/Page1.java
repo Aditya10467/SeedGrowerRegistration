@@ -25,7 +25,7 @@ public class Page1 extends JPanel {
 
         // Add more spacing between the title bar and the first row of components
         int verticalSpacing = 20; // Increase the vertical spacing to 20 pixels
-        int leftMargin = 100; // Additional left margin to center the form
+        int leftMargin = 180; // Additional left margin to center the form
 
         // Name
         JLabel nameLabel = new JLabel("Name");
@@ -59,6 +59,7 @@ public class Page1 extends JPanel {
 
         relationField = new JComboBox<>();
         relationField.setPreferredSize(new Dimension(200, 30));
+        relationField.setBackground(new Color(255,255,255));
         add(relationField);
         layout.putConstraint(SpringLayout.NORTH, relationField, 5, SpringLayout.SOUTH, relationLabel);
         layout.putConstraint(SpringLayout.WEST, relationField, 500 + leftMargin, SpringLayout.WEST, this);
@@ -82,6 +83,7 @@ public class Page1 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, districtLabel, leftMargin, SpringLayout.WEST, this);
 
         districtField = new JComboBox<>();
+        districtField.setBackground(new Color(255,255,255));
         districtField.setPreferredSize(new Dimension(200, 30));
         add(districtField);
         layout.putConstraint(SpringLayout.NORTH, districtField, 5, SpringLayout.SOUTH, districtLabel);
@@ -94,6 +96,7 @@ public class Page1 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, blockLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
         blockField = new JComboBox<>();
+        blockField.setBackground(new Color(255,255,255));
         blockField.setPreferredSize(new Dimension(200, 30));
         add(blockField);
         layout.putConstraint(SpringLayout.NORTH, blockField, 5, SpringLayout.SOUTH, blockLabel);
@@ -106,6 +109,7 @@ public class Page1 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, mouzaLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
         mouzaField = new JComboBox<>();
+        mouzaField.setBackground(new Color(255,255,255));
         mouzaField.setPreferredSize(new Dimension(200, 30));
         add(mouzaField);
         layout.putConstraint(SpringLayout.NORTH, mouzaField, 5, SpringLayout.SOUTH, mouzaLabel);
@@ -166,6 +170,7 @@ public class Page1 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, identificationLabel, leftMargin, SpringLayout.WEST, this);
 
         identificationField = new JComboBox<>();
+        identificationField.setBackground(new Color(255,255,255));
         identificationField.setPreferredSize(new Dimension(450, 30));
         add(identificationField);
         layout.putConstraint(SpringLayout.NORTH, identificationField, 5, SpringLayout.SOUTH, identificationLabel);
