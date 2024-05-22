@@ -365,6 +365,8 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, saveButton, horizontalSpacing, SpringLayout.EAST, backButton);
 
         backButton.addActionListener(e -> {
+//            CardLayout cl = (CardLayout) getParent().getLayout();
+//            cl.show(getParent(), "Page 1");
             CardLayout cl = (CardLayout) getParent().getLayout();
             cl.show(getParent(), "Page 1");
         });
