@@ -16,6 +16,8 @@ public class Page1 extends JPanel {
         // Create and add the custom title bar
         titleBar = new TitleBarPanel("Basic Profile of Seed Grower (Seed Grower)");
         add(titleBar);
+
+
         layout.putConstraint(SpringLayout.NORTH, titleBar, 0, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.WEST, titleBar, 0, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.EAST, titleBar, 0, SpringLayout.EAST, this);

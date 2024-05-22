@@ -432,9 +432,6 @@ public class Page2 extends JPanel {
 
 
 
-
-
-
         // Add a resize listener to adjust the title bar width
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {

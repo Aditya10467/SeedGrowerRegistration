@@ -8,10 +8,17 @@ public class SeedGrower extends JFrame {
 
     public SeedGrower() {
         // Set up the frame
-        setTitle("Multi-Page Form");
+        setTitle("SAATHI");
         getContentPane().setBackground(new Color(255,255,255));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 400);
+        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\JAVA\\SeedGrowerRegistration\\src\\logo.png");
+        setIconImage(icon);
+
+
+        setSize( 600, 400);
+
+        JPanel titleBar = new JPanel();
+        titleBar.setPreferredSize(new Dimension(getWidth(), 50));
 
         // Initialize CardLayout and main panel
         cardLayout = new CardLayout();
