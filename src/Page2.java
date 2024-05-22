@@ -229,9 +229,13 @@ public class Page2 extends JPanel {
         addedTagNumbersArea.setColumns(20);
         addedTagNumbersArea.setLineWrap(true);
         addedTagNumbersArea.setWrapStyleWord(true);
-        add(addedTagNumbersArea);
         layout.putConstraint(SpringLayout.NORTH, addedTagNumbersArea, 20, SpringLayout.NORTH, tagNumberLabel);
         layout.putConstraint(SpringLayout.WEST, addedTagNumbersArea, 40, SpringLayout.EAST, addTagButton);
+
+        JScrollPane tagareascrollPane = new JScrollPane(addedTagNumbersArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        add(tagareascrollPane);
+        layout.putConstraint(SpringLayout.NORTH, tagareascrollPane, 20, SpringLayout.NORTH, tagNumberLabel);
+        layout.putConstraint(SpringLayout.WEST, tagareascrollPane, 40, SpringLayout.EAST, addTagButton);
 
 
         addTagButton.addActionListener(new ActionListener() {
@@ -267,6 +271,11 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, packagingArea, 20, SpringLayout.NORTH, tagNumberLabel);
         layout.putConstraint(SpringLayout.WEST, packagingArea, 20, SpringLayout.EAST, addedTagNumbersArea);
 
+        JScrollPane pkgareascrollPane = new JScrollPane(packagingArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        add(pkgareascrollPane);
+        layout.putConstraint(SpringLayout.NORTH, pkgareascrollPane, 20, SpringLayout.NORTH, tagNumberLabel);
+        layout.putConstraint(SpringLayout.WEST, pkgareascrollPane, 20, SpringLayout.EAST, addedTagNumbersArea);
+
         JLabel challanDetailsLabel = new JLabel("Challan Details");
         add(challanDetailsLabel);
         layout.putConstraint(SpringLayout.NORTH, challanDetailsLabel, 0, SpringLayout.NORTH, lotNumberLabel);
@@ -280,6 +289,11 @@ public class Page2 extends JPanel {
         add(challanDetailsArea);
         layout.putConstraint(SpringLayout.NORTH, challanDetailsArea, 20, SpringLayout.NORTH, tagNumberLabel);
         layout.putConstraint(SpringLayout.WEST, challanDetailsArea, 20, SpringLayout.EAST, packagingArea);
+
+        JScrollPane challanareascrollPane = new JScrollPane(challanDetailsArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        add(challanareascrollPane);
+        layout.putConstraint(SpringLayout.NORTH, challanareascrollPane, 20, SpringLayout.NORTH, tagNumberLabel);
+        layout.putConstraint(SpringLayout.WEST, challanareascrollPane, 20, SpringLayout.EAST, packagingArea);
 
 
 
