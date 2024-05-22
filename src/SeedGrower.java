@@ -11,8 +11,9 @@ public class SeedGrower extends JFrame {
         setTitle("SAATHI");
         getContentPane().setBackground(new Color(255,255,255));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\JAVA\\SeedGrowerRegistration\\src\\logo.png");
-        setIconImage(icon);
+        ImageIcon icon = new ImageIcon(getClass().getResource("logo.png"));
+        Image image = icon.getImage();
+        setIconImage(image);
 
 
         setSize( 600, 400);
