@@ -22,7 +22,7 @@ public class Page2 extends JPanel implements ActionListener  {
     JButton addCropButton;
 
     JTextField sourceOfSeedsField,plotNoField,areaField,lotNumberField,tagNumberField,weightPerBagField,numberOfBagsField,billReceiptField;
-    JComboBox roUnitOfficeComboBox,monthOfSowingComboBox,weekOfSowingComboBox,varietyComboBox,sourceClassComboBox,classToBeProducedComboBox,districtComboBox,blockComboBox,mouzaComboBox,cropComboBox;
+    static JComboBox roUnitOfficeComboBox,monthOfSowingComboBox,weekOfSowingComboBox,varietyComboBox,sourceClassComboBox,classToBeProducedComboBox,districtComboBox,blockComboBox,mouzaComboBox,cropComboBox;
 
     public Page2(Page1 page1) {
         this.page1 = page1;
@@ -71,7 +71,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, monthOfSowingLabel, 0, SpringLayout.NORTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, monthOfSowingLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
-        monthOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        monthOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--","January","February","March","April","May","June","July","August","September","October","November","December"});
         monthOfSowingComboBox.setBackground(new Color(255,255,255));
         monthOfSowingComboBox.setPreferredSize(new Dimension(150,20));
         add(monthOfSowingComboBox);
@@ -83,7 +83,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, weekOfSowingLabel, 0, SpringLayout.NORTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, weekOfSowingLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
-        weekOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        weekOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--","1","2","3","4","5"});
         weekOfSowingComboBox.setBackground(new Color(255,255,255));
         weekOfSowingComboBox.setPreferredSize(new Dimension(150,20));
         add(weekOfSowingComboBox);
@@ -120,7 +120,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, sourceClassLabel, 0, SpringLayout.NORTH, cropLabel);
         layout.putConstraint(SpringLayout.WEST, sourceClassLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
-        sourceClassComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        sourceClassComboBox = new JComboBox<>(new String[]{"--SELECT--","Fundamental","Breeder"});
         sourceClassComboBox.setBackground(new Color(255,255,255));
         sourceClassComboBox.setPreferredSize(new Dimension(150,20));
         add(sourceClassComboBox);
@@ -132,7 +132,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, classToBeProducedLabel, 0, SpringLayout.NORTH, cropLabel);
         layout.putConstraint(SpringLayout.WEST, classToBeProducedLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
-        classToBeProducedComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        classToBeProducedComboBox = new JComboBox<>(new String[]{"--SELECT--","Fundamental","Breeder"});
         classToBeProducedComboBox.setBackground(new Color(255,255,255));
         classToBeProducedComboBox.setPreferredSize(new Dimension(150,20));
         add(classToBeProducedComboBox);
@@ -249,15 +249,18 @@ public class Page2 extends JPanel implements ActionListener  {
         addTagButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String lotNumber=lotNumberField.getText();
-                String tagNumber=tagNumberField.getText();
-                String addedTagNumber="{"+lotNumber+","+tagNumber+"}";
-
-                if(addedTagNumbersArea.getText().isEmpty()){
-                    addedTagNumbersArea.append(addedTagNumber);
-                }else {
-                    addedTagNumbersArea.append(",");
-                    addedTagNumbersArea.append(addedTagNumber);
+                if(lotNumberField.getText().isEmpty() || tagNumberField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Enter all required fields", "Waring", JOptionPane.WARNING_MESSAGE);
+                }else{
+                    String lotNumber=lotNumberField.getText();
+                    String tagNumber=tagNumberField.getText();
+                    String addedTagNumber="{"+lotNumber+","+tagNumber+"}";
+                    if (addedTagNumbersArea.getText().isEmpty()) {
+                        addedTagNumbersArea.append(addedTagNumber);
+                    } else {
+                        addedTagNumbersArea.append(",");
+                        addedTagNumbersArea.append(addedTagNumber);
+                    }
                 }
 
 
@@ -336,11 +339,13 @@ public class Page2 extends JPanel implements ActionListener  {
         addBagButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int bagWeight=Integer.parseInt(weightPerBagField.getText());
-                int noOfBags=Integer.parseInt(numberOfBagsField.getText());
-
-                String packagingDetails="{"+bagWeight+","+noOfBags+"}";
                 if(weightPerBagField.getText().isEmpty() || numberOfBagsField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Enter all required fields", "Waring", JOptionPane.WARNING_MESSAGE);
+                }else{
+                    int bagWeight=Integer.parseInt(weightPerBagField.getText());
+                    int noOfBags=Integer.parseInt(numberOfBagsField.getText());
+                    String packagingDetails="{"+bagWeight+","+noOfBags+"}";
+
                     if (packagingArea.getText().isEmpty()) {
                         packagingArea.append(packagingDetails);
                     } else {
@@ -348,6 +353,7 @@ public class Page2 extends JPanel implements ActionListener  {
                         packagingArea.append(packagingDetails);
                     }
                 }
+
             }
         });
 
@@ -387,11 +393,13 @@ public class Page2 extends JPanel implements ActionListener  {
         addDateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String challanNo=billReceiptField.getText();
-                String date=dateFormat.format(dateField.getDate());
-
-                String addedTagNumber="{"+challanNo+","+date+"}";
                 if(billReceiptField.getText().isEmpty() || dateField.getDate()==null) {
+                    JOptionPane.showMessageDialog(null, "Enter all required fields", "Waring", JOptionPane.WARNING_MESSAGE);
+                }else{
+                    String challanNo=billReceiptField.getText();
+                    String date=dateFormat.format(dateField.getDate());
+
+                    String addedTagNumber="{"+challanNo+","+date+"}";
                     if (challanDetailsArea.getText().isEmpty()) {
                         challanDetailsArea.append(addedTagNumber);
                     } else {
