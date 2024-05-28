@@ -2,19 +2,27 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 
-public class Page2 extends JPanel {
+public class Page2 extends JPanel implements ActionListener  {
     private Page1 page1;
     private DefaultTableModel tableModel;
+    JTable table;
+    ArrayList<Data> dataList = new ArrayList<>();
     private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-mm-dd");
 
     JLabel sourceOfSeedsLabel,roUnitOfficeLabel;
+    JButton addCropButton;
+
+    JTextField sourceOfSeedsField,plotNoField,areaField,lotNumberField,tagNumberField,weightPerBagField,numberOfBagsField,billReceiptField;
+    JComboBox roUnitOfficeComboBox,monthOfSowingComboBox,weekOfSowingComboBox,varietyComboBox,sourceClassComboBox,classToBeProducedComboBox,districtComboBox,blockComboBox,mouzaComboBox,cropComboBox;
 
     public Page2(Page1 page1) {
         this.page1 = page1;
@@ -41,7 +49,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, sourceOfSeedsLabel, topMargin, SpringLayout.SOUTH, titleBar);
         layout.putConstraint(SpringLayout.WEST, sourceOfSeedsLabel, leftMargin, SpringLayout.WEST, this);
 
-        JTextField sourceOfSeedsField = new JTextField(15);
+        sourceOfSeedsField = new JTextField(15);
         add(sourceOfSeedsField);
         layout.putConstraint(SpringLayout.NORTH, sourceOfSeedsField, 5, SpringLayout.SOUTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, sourceOfSeedsField, leftMargin, SpringLayout.WEST, this);
@@ -51,7 +59,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, roUnitOfficeLabel, 0, SpringLayout.NORTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, roUnitOfficeLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
-        JComboBox<String> roUnitOfficeComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        roUnitOfficeComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         roUnitOfficeComboBox.setBackground(new Color(255,255,255));
         roUnitOfficeComboBox.setPreferredSize(new Dimension(150,20));
         add(roUnitOfficeComboBox);
@@ -63,7 +71,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, monthOfSowingLabel, 0, SpringLayout.NORTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, monthOfSowingLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
-        JComboBox<String> monthOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        monthOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         monthOfSowingComboBox.setBackground(new Color(255,255,255));
         monthOfSowingComboBox.setPreferredSize(new Dimension(150,20));
         add(monthOfSowingComboBox);
@@ -75,7 +83,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, weekOfSowingLabel, 0, SpringLayout.NORTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, weekOfSowingLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
-        JComboBox<String> weekOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        weekOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         weekOfSowingComboBox.setBackground(new Color(255,255,255));
         weekOfSowingComboBox.setPreferredSize(new Dimension(150,20));
         add(weekOfSowingComboBox);
@@ -88,7 +96,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, cropLabel, verticalSpacing, SpringLayout.SOUTH, sourceOfSeedsField);
         layout.putConstraint(SpringLayout.WEST, cropLabel, leftMargin, SpringLayout.WEST, this);
 
-        JComboBox<String> cropComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        cropComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         cropComboBox.setBackground(new Color(255,255,255));
         cropComboBox.setPreferredSize(new Dimension(150,20));
         add(cropComboBox);
@@ -100,7 +108,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, varietyLabel, 0, SpringLayout.NORTH, cropLabel);
         layout.putConstraint(SpringLayout.WEST, varietyLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
-        JComboBox<String> varietyComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        varietyComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         varietyComboBox.setBackground(new Color(255,255,255));
         varietyComboBox.setPreferredSize(new Dimension(150,20));
         add(varietyComboBox);
@@ -112,7 +120,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, sourceClassLabel, 0, SpringLayout.NORTH, cropLabel);
         layout.putConstraint(SpringLayout.WEST, sourceClassLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
-        JComboBox<String> sourceClassComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        sourceClassComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         sourceClassComboBox.setBackground(new Color(255,255,255));
         sourceClassComboBox.setPreferredSize(new Dimension(150,20));
         add(sourceClassComboBox);
@@ -124,7 +132,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, classToBeProducedLabel, 0, SpringLayout.NORTH, cropLabel);
         layout.putConstraint(SpringLayout.WEST, classToBeProducedLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
-        JComboBox<String> classToBeProducedComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        classToBeProducedComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         classToBeProducedComboBox.setBackground(new Color(255,255,255));
         classToBeProducedComboBox.setPreferredSize(new Dimension(150,20));
         add(classToBeProducedComboBox);
@@ -137,7 +145,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, plotNoLabel, verticalSpacing, SpringLayout.SOUTH, cropComboBox);
         layout.putConstraint(SpringLayout.WEST, plotNoLabel, leftMargin, SpringLayout.WEST, this);
 
-        JTextField plotNoField = new JTextField(15);
+        plotNoField = new JTextField(15);
         add(plotNoField);
         layout.putConstraint(SpringLayout.NORTH, plotNoField, 5, SpringLayout.SOUTH, plotNoLabel);
         layout.putConstraint(SpringLayout.WEST, plotNoField, leftMargin, SpringLayout.WEST, this);
@@ -147,7 +155,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, districtLabel, 0, SpringLayout.NORTH, plotNoLabel);
         layout.putConstraint(SpringLayout.WEST, districtLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
-        JComboBox<String> districtComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        districtComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         districtComboBox.setBackground(new Color(255,255,255));
         districtComboBox.setPreferredSize(new Dimension(150,20));
         add(districtComboBox);
@@ -159,7 +167,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, blockLabel, 0, SpringLayout.NORTH, plotNoLabel);
         layout.putConstraint(SpringLayout.WEST, blockLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
-        JComboBox<String> blockComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        blockComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         blockComboBox.setBackground(new Color(255,255,255));
         blockComboBox.setPreferredSize(new Dimension(150,20));
         add(blockComboBox);
@@ -171,7 +179,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, mouzaLabel, 0, SpringLayout.NORTH, plotNoLabel);
         layout.putConstraint(SpringLayout.WEST, mouzaLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
-        JComboBox<String> mouzaComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        mouzaComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         mouzaComboBox.setBackground(new Color(255,255,255));
         mouzaComboBox.setPreferredSize(new Dimension(150,20));
         add(mouzaComboBox);
@@ -184,7 +192,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, areaLabel, verticalSpacing, SpringLayout.SOUTH, plotNoField);
         layout.putConstraint(SpringLayout.WEST, areaLabel, leftMargin, SpringLayout.WEST, this);
 
-        JTextField areaField = new JTextField(15);
+        areaField = new JTextField(15);
         add(areaField);
         layout.putConstraint(SpringLayout.NORTH, areaField, 5, SpringLayout.SOUTH, areaLabel);
         layout.putConstraint(SpringLayout.WEST, areaField, leftMargin, SpringLayout.WEST, this);
@@ -195,7 +203,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, lotNumberLabel, verticalSpacing, SpringLayout.SOUTH, areaField);
         layout.putConstraint(SpringLayout.WEST, lotNumberLabel, leftMargin, SpringLayout.WEST, this);
 
-        JTextField lotNumberField = new JTextField(15);
+        lotNumberField = new JTextField(15);
         add(lotNumberField);
         layout.putConstraint(SpringLayout.NORTH, lotNumberField, 5, SpringLayout.SOUTH, lotNumberLabel);
         layout.putConstraint(SpringLayout.WEST, lotNumberField, leftMargin, SpringLayout.WEST, this);
@@ -205,7 +213,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, tagNumberLabel, 0, SpringLayout.NORTH, lotNumberLabel);
         layout.putConstraint(SpringLayout.WEST, tagNumberLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
-        JTextField tagNumberField = new JTextField(15);
+        tagNumberField = new JTextField(15);
         add(tagNumberField);
         layout.putConstraint(SpringLayout.NORTH, tagNumberField, 5, SpringLayout.SOUTH, tagNumberLabel);
         layout.putConstraint(SpringLayout.WEST, tagNumberField, 250 + leftMargin, SpringLayout.WEST, this);
@@ -271,10 +279,10 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, packagingArea, 20, SpringLayout.NORTH, tagNumberLabel);
         layout.putConstraint(SpringLayout.WEST, packagingArea, 20, SpringLayout.EAST, addedTagNumbersArea);
 
-        JScrollPane pkgareascrollPane = new JScrollPane(packagingArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        add(pkgareascrollPane);
-        layout.putConstraint(SpringLayout.NORTH, pkgareascrollPane, 20, SpringLayout.NORTH, tagNumberLabel);
-        layout.putConstraint(SpringLayout.WEST, pkgareascrollPane, 20, SpringLayout.EAST, addedTagNumbersArea);
+//        JScrollPane pkgareascrollPane = new JScrollPane(packagingArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+//        add(pkgareascrollPane);
+//        layout.putConstraint(SpringLayout.NORTH, pkgareascrollPane, 20, SpringLayout.NORTH, tagNumberLabel);
+//        layout.putConstraint(SpringLayout.WEST, pkgareascrollPane, 20, SpringLayout.EAST, addedTagNumbersArea);
 
         JLabel challanDetailsLabel = new JLabel("Challan Details");
         add(challanDetailsLabel);
@@ -303,7 +311,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, weightPerBagLabel, verticalSpacing, SpringLayout.SOUTH, lotNumberField);
         layout.putConstraint(SpringLayout.WEST, weightPerBagLabel, leftMargin, SpringLayout.WEST, this);
 
-        JTextField weightPerBagField = new JTextField(15);
+        weightPerBagField = new JTextField(15);
         add(weightPerBagField);
         layout.putConstraint(SpringLayout.NORTH, weightPerBagField, 5, SpringLayout.SOUTH, weightPerBagLabel);
         layout.putConstraint(SpringLayout.WEST, weightPerBagField, leftMargin, SpringLayout.WEST, this);
@@ -313,7 +321,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, numberOfBagsLabel, 0, SpringLayout.NORTH, weightPerBagLabel);
         layout.putConstraint(SpringLayout.WEST, numberOfBagsLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
-        JTextField numberOfBagsField = new JTextField(15);
+        numberOfBagsField = new JTextField(15);
         add(numberOfBagsField);
         layout.putConstraint(SpringLayout.NORTH, numberOfBagsField, 5, SpringLayout.SOUTH, numberOfBagsLabel);
         layout.putConstraint(SpringLayout.WEST, numberOfBagsField, 250 + leftMargin, SpringLayout.WEST, this);
@@ -352,7 +360,7 @@ public class Page2 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, billReceiptLabel, leftMargin, SpringLayout.WEST, this);
 
 
-        JTextField billReceiptField = new JTextField(15);
+        billReceiptField = new JTextField(15);
         add(billReceiptField);
         layout.putConstraint(SpringLayout.NORTH, billReceiptField, 5, SpringLayout.SOUTH, billReceiptLabel);
         layout.putConstraint(SpringLayout.WEST, billReceiptField, leftMargin, SpringLayout.WEST, this);
@@ -400,9 +408,10 @@ public class Page2 extends JPanel {
 
         // Add Crop Button
 
-        JButton addCropButton = new JButton("ADD CROP");
+        addCropButton = new JButton("ADD CROP");
         addCropButton.setForeground(new Color(255,255,255));
         addCropButton.setBackground(new Color(243, 142, 57));
+        addCropButton.addActionListener(this);
         add(addCropButton);
         layout.putConstraint(SpringLayout.NORTH, addCropButton, verticalSpacing+5, SpringLayout.NORTH, billReceiptField);
         layout.putConstraint(SpringLayout.WEST, addCropButton, 500+leftMargin, SpringLayout.WEST, this);
@@ -411,23 +420,23 @@ public class Page2 extends JPanel {
 
 
 
-        addCropButton.addActionListener(e -> {
-            String textField1Value = page1.getTextField1Value();
-            JOptionPane.showMessageDialog(Page2.this, "Data to save:\nField 1: " + textField1Value);
-        });
+//        addCropButton.addActionListener(e -> {
+//            String textField1Value = page1.getTextField1Value();
+//            JOptionPane.showMessageDialog(Page2.this, "Data to save:\nField 1: " + textField1Value);
+//        });
 
         String[] columnNames = {"Sl No", "RO Name", "Crop", "Variety", "Source Class", "Class to be produced", "Plot No", "District", "Block", "Mouza","Area (hectare)", "Edit", "Remove"};
         tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 15 || column == 16; // Allow editing only for "Edit" and "Remove" columns
+                return column == 11 || column == 12; // Allow editing only for "Edit" and "Remove" columns
             }
         };
         JTable table = new JTable(tableModel);
+        table.getColumnModel().getColumn(11).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(11).setCellEditor(new ButtonEditor(new JCheckBox(), true, table));
         table.getColumnModel().getColumn(12).setCellRenderer(new ButtonRenderer());
-        table.getColumnModel().getColumn(12).setCellEditor(new ButtonEditor(new JCheckBox()));
-        table.getColumnModel().getColumn(12).setCellRenderer(new ButtonRenderer());
-        table.getColumnModel().getColumn(12).setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumnModel().getColumn(12).setCellEditor(new ButtonEditor(new JCheckBox(), false, table));
         JScrollPane scrollPane = new JScrollPane(table); // Wrap the table in a scroll pane
         scrollPane.setPreferredSize(new Dimension(800, 75)); // Adjust the height as needed
         add(scrollPane);
@@ -446,6 +455,7 @@ public class Page2 extends JPanel {
         saveButton.setBackground(new Color(243, 142, 57));
         saveButton.setForeground(new Color(255,255,255));
         add(saveButton);
+        //saveButton.addActionListener(this);
         layout.putConstraint(SpringLayout.NORTH, saveButton, verticalSpacing, SpringLayout.SOUTH, scrollPane);
         layout.putConstraint(SpringLayout.WEST, saveButton, horizontalSpacing, SpringLayout.EAST, backButton);
 
@@ -472,6 +482,8 @@ public class Page2 extends JPanel {
             }
         });
     }
+
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -489,6 +501,38 @@ public class Page2 extends JPanel {
         //Draw bottom border
         g.fillRect(0, height - thickness, width, thickness);
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==addCropButton){
+            String sourceOfSeeds = sourceOfSeedsField.getText();
+            String roUnitOffice = (String) roUnitOfficeComboBox.getSelectedItem();
+            String crop = (String) cropComboBox.getSelectedItem();
+            String variety = (String) varietyComboBox.getSelectedItem();
+            String sourceClass = (String) sourceClassComboBox.getSelectedItem();
+            String classToBeProduced = (String) classToBeProducedComboBox.getSelectedItem();
+            String plotNo = plotNoField.getText();
+            String district = (String) districtComboBox.getSelectedItem();
+            String block = (String) blockComboBox.getSelectedItem();
+            String mouza = (String) mouzaComboBox.getSelectedItem();
+            String area = areaField.getText();
+//            String lotNumber = lotNumberField.getText();
+//            String tagNumber = tagNumberField.getText();
+//            String weightPerBag = weightPerBagField.getText();
+//            String numberOfBags = numberOfBagsField.getText();
+//            String billReceipt = billReceiptField.getText();
+
+            Data newData = new Data(sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area);
+            dataList.add(newData);
+
+            // Update the table model with the new data
+            tableModel.addRow(new Object[]{sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area,"Edit","Remove"});
+        }
+    }
+
+
+
+
+
 
     // Custom cell renderer for rendering buttons
     class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -504,58 +548,61 @@ public class Page2 extends JPanel {
     }
 
     // Custom cell editor for editing buttons
-    class ButtonEditor extends DefaultCellEditor {
-        protected JButton button;
-        private String label;
-        private boolean isPushed;
+    private class ButtonEditor extends DefaultCellEditor {
+        private final JButton button;
+        private boolean isEditButton; // To track whether the button is for edit or remove
+        private JTable table;
 
-        public ButtonEditor(JCheckBox checkBox) {
+        public ButtonEditor(JCheckBox checkBox, boolean isEditButton, JTable table) {
             super(checkBox);
-            button = new JButton();
+            this.isEditButton = isEditButton;
+            this.table = table; // Initialize the table instance
+            if (isEditButton) {
+                button = new JButton("Edit");
+            } else {
+                button = new JButton("Remove");
+            }
             button.setOpaque(true);
-            button.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    fireEditingStopped();
+            button.setFocusable(true); // Make the button focusable
+            button.addActionListener(e -> {
+                int selectedRow = table.getSelectedRow();
+                if (selectedRow != -1) {
+                    if (isEditButton) {
+                        // Implement your edit logic here
+                    } else {
+                        // Remove the selected row from the table
+                        removeRow(table, tableModel, selectedRow);
+
+                    }
                 }
             });
+
         }
 
+        @Override
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-            if (isSelected) {
-                button.setForeground(table.getSelectionForeground());
-                button.setBackground(table.getSelectionBackground());
-            } else {
-                button.setForeground(table.getForeground());
-                button.setBackground(UIManager.getColor("Button.background"));
-            }
-            label = (value == null) ? "" : value.toString();
-            button.setText(label);
-            isPushed = true;
             return button;
         }
-
-        public Object getCellEditorValue() {
-            if (isPushed) {
-                // Perform edit or remove action based on column
-                if (label.equals("Edit")) {
-                    // Perform edit action
-                    // You can implement the edit action here
-                } else if (label.equals("Remove")) {
-                    // Perform remove action
-                    // You can implement the remove action here
-                }
+    }
+    private void shiftRows(DefaultTableModel model, int index) {
+        for (int i = index + 1; i < model.getRowCount(); i++) {
+            model.setValueAt(model.getValueAt(i, 0), i - 1, 0);
+        }
+        model.removeRow(model.getRowCount() - 1);
+    }
+    private void removeRow(JTable table, DefaultTableModel model, int selectedRow) {
+        if (selectedRow != -1 && !table.isEditing()) {
+            if (selectedRow < model.getRowCount() - 1) {
+                shiftRows(model, selectedRow);
+            } else {
+                model.removeRow(selectedRow);
             }
-            isPushed = false;
-            return new String(label);
-        }
-
-        public boolean stopCellEditing() {
-            isPushed = false;
-            return super.stopCellEditing();
-        }
-
-        protected void fireEditingStopped() {
-            super.fireEditingStopped();
+        } else if (selectedRow != -1 && table.isEditing()) {
+            TableCellEditor editor = table.getCellEditor(table.getEditingRow(), table.getEditingColumn());
+            if (editor != null) {
+                editor.stopCellEditing();
+            }
+            model.removeRow(selectedRow);
         }
     }
 }
