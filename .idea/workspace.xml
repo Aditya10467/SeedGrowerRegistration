@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07c591b5-50ab-42e8-8e7b-12451abdc3fe" name="Changes" comment="Adds notEmpty checks">
-      <change afterPath="$PROJECT_DIR$/cropdb.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LoadDetails.java" afterDir="false" />
+    <list default="true" id="07c591b5-50ab-42e8-8e7b-12451abdc3fe" name="Changes" comment="adds scroll bar in text area in page 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SeedGrowerRegistration.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SeedGrowerRegistration.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Page2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page2.java" afterDir="false" />
@@ -32,16 +30,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/jar_files/slf4j-simple-2.1.0-alpha1.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/sqlite-jdbc-3.45.2.0.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="SeedGrower" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="SeedGrower" />
@@ -100,14 +98,7 @@
       <option name="project" value="LOCAL" />
       <updated>1716887103984</updated>
     </task>
-    <task id="LOCAL-00006" summary="Adds notEmpty checks">
-      <created>1716894199402</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1716894199402</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -128,7 +119,6 @@
     <MESSAGE value="adds navigation functionality" />
     <MESSAGE value="changes colors" />
     <MESSAGE value="Adds table functionality" />
-    <MESSAGE value="Adds notEmpty checks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adds notEmpty checks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adds table functionality" />
   </component>
 </project>

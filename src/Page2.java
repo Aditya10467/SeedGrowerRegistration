@@ -14,9 +14,16 @@ import java.util.ArrayList;
 public class Page2 extends JPanel implements ActionListener  {
     private Page1 page1;
     private DefaultTableModel tableModel;
+
+    JTextArea packagingArea,addedTagNumbersArea, challanDetailsArea;
+
+    JDateChooser dateField;
     JTable table;
     ArrayList<Data> dataList = new ArrayList<>();
-    private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-mm-dd");
+
+
+    private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+
 
     JLabel sourceOfSeedsLabel,roUnitOfficeLabel;
     JButton addCropButton;
@@ -272,7 +279,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, tagNumberAreaLabel, 0, SpringLayout.NORTH, lotNumberLabel);
         layout.putConstraint(SpringLayout.WEST, tagNumberAreaLabel, 40, SpringLayout.EAST, addTagButton);
 
-        JTextArea addedTagNumbersArea = new JTextArea();
+        addedTagNumbersArea = new JTextArea();
         addedTagNumbersArea.setRows(3);
         addedTagNumbersArea.setColumns(20);
         addedTagNumbersArea.setLineWrap(true);
@@ -314,7 +321,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, packagingAreaLabel, 0, SpringLayout.NORTH, lotNumberLabel);
         layout.putConstraint(SpringLayout.WEST, packagingAreaLabel, 20, SpringLayout.EAST, addedTagNumbersArea);
 
-        JTextArea packagingArea = new JTextArea();
+        packagingArea = new JTextArea();
         packagingArea.setRows(3);
         packagingArea.setColumns(20);
         packagingArea.setLineWrap(true);
@@ -333,7 +340,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, challanDetailsLabel, 0, SpringLayout.NORTH, lotNumberLabel);
         layout.putConstraint(SpringLayout.WEST, challanDetailsLabel, 20, SpringLayout.EAST, packagingArea);
 
-        JTextArea challanDetailsArea = new JTextArea();
+        challanDetailsArea = new JTextArea();
         challanDetailsArea.setRows(3);
         challanDetailsArea.setColumns(20);
         challanDetailsArea.setLineWrap(true);
@@ -418,7 +425,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.WEST, dateLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
 
-        JDateChooser dateField=new JDateChooser();
+        dateField=new JDateChooser();
         dateField.setPreferredSize(new Dimension(150,20));
         add(dateField);
         layout.putConstraint(SpringLayout.NORTH, dateField, 5, SpringLayout.SOUTH, dateLabel);
@@ -576,6 +583,31 @@ public class Page2 extends JPanel implements ActionListener  {
             // Update the table model with the new data
             tableModel.addRow(new Object[]{sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area,"Edit","Remove"});
         }
+
+
+        sourceOfSeedsField.setText("");
+        roUnitOfficeComboBox.setSelectedItem(null);
+        monthOfSowingComboBox.setSelectedItem(null);
+        weekOfSowingComboBox.setSelectedItem(null);
+        cropComboBox.setSelectedItem(null);
+        varietyComboBox.setSelectedItem(null);
+        sourceClassComboBox.setSelectedItem(null);
+        classToBeProducedComboBox.setSelectedItem(null);
+        plotNoField.setText("");
+        districtComboBox.setSelectedItem(null);
+        blockComboBox.setSelectedItem(null);
+        mouzaComboBox.setSelectedItem(null);
+        areaField.setText("");
+        lotNumberField.setText("");
+        tagNumberField.setText("");
+        weightPerBagField.setText("");
+        numberOfBagsField.setText("");
+        billReceiptField.setText("");
+        addedTagNumbersArea.setText(null);
+        packagingArea.setText(null);
+        challanDetailsArea.setText(null);
+        dateField.setDate(null);
+
     }
 
 
