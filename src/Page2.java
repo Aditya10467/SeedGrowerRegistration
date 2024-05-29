@@ -43,6 +43,9 @@ public class Page2 extends JPanel implements ActionListener  {
         int topMargin = 40; // Top margin after title bar
         int leftMargin = 100; // Left margin to center the form
 
+        LoadDetails l=new LoadDetails();
+        l.connectToDatabase();
+
         // Row 1
         sourceOfSeedsLabel = new JLabel("Source Of Seeds:");
         add(sourceOfSeedsLabel);
@@ -99,9 +102,21 @@ public class Page2 extends JPanel implements ActionListener  {
         cropComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         cropComboBox.setBackground(new Color(255,255,255));
         cropComboBox.setPreferredSize(new Dimension(150,20));
+        l.populateCropBox();
+        cropComboBox.setSelectedItem(null);
         add(cropComboBox);
         layout.putConstraint(SpringLayout.NORTH, cropComboBox, 5, SpringLayout.SOUTH, cropLabel);
         layout.putConstraint(SpringLayout.WEST, cropComboBox, leftMargin, SpringLayout.WEST, this);
+
+        cropComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedCrop=(String) cropComboBox.getSelectedItem();
+                if(selectedCrop!="--SELECT--"){
+                    l.populateVarietyBox(selectedCrop);
+                }
+            }
+        });
 
         JLabel varietyLabel = new JLabel("Variety:");
         add(varietyLabel);
@@ -158,9 +173,21 @@ public class Page2 extends JPanel implements ActionListener  {
         districtComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         districtComboBox.setBackground(new Color(255,255,255));
         districtComboBox.setPreferredSize(new Dimension(150,20));
+        l.populateDistrictBox();
+        districtComboBox.setSelectedItem(null);
         add(districtComboBox);
         layout.putConstraint(SpringLayout.NORTH, districtComboBox, 5, SpringLayout.SOUTH, districtLabel);
         layout.putConstraint(SpringLayout.WEST, districtComboBox, 250 + leftMargin, SpringLayout.WEST, this);
+
+        districtComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedDistrict = (String) districtComboBox.getSelectedItem();
+                if(selectedDistrict!=null){
+                    l.populateBlockBox(selectedDistrict);
+                }
+            }
+        });
 
         JLabel blockLabel = new JLabel("Block:");
         add(blockLabel);
@@ -174,6 +201,18 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, blockComboBox, 5, SpringLayout.SOUTH, blockLabel);
         layout.putConstraint(SpringLayout.WEST, blockComboBox, 500 + leftMargin, SpringLayout.WEST, this);
 
+//        blockComboBox.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                String selectedBlock = (String) blockComboBox.getSelectedItem();
+//                if(selectedBlock!=null){
+//                    l.populateMouzaBox(selectedBlock);
+//                    mouzaComboBox.setSelectedItem(null);
+////
+//                }
+//            }
+//        });
+
         JLabel mouzaLabel = new JLabel("Mouza:");
         add(mouzaLabel);
         layout.putConstraint(SpringLayout.NORTH, mouzaLabel, 0, SpringLayout.NORTH, plotNoLabel);
@@ -182,6 +221,7 @@ public class Page2 extends JPanel implements ActionListener  {
         mouzaComboBox = new JComboBox<>(new String[]{"--SELECT--"});
         mouzaComboBox.setBackground(new Color(255,255,255));
         mouzaComboBox.setPreferredSize(new Dimension(150,20));
+        mouzaComboBox.setSelectedItem(null);
         add(mouzaComboBox);
         layout.putConstraint(SpringLayout.NORTH, mouzaComboBox, 5, SpringLayout.SOUTH, mouzaLabel);
         layout.putConstraint(SpringLayout.WEST, mouzaComboBox, 750 + leftMargin, SpringLayout.WEST, this);
@@ -256,10 +296,11 @@ public class Page2 extends JPanel implements ActionListener  {
                     String tagNumber=tagNumberField.getText();
                     String addedTagNumber="{"+lotNumber+","+tagNumber+"}";
                     if (addedTagNumbersArea.getText().isEmpty()) {
-                        addedTagNumbersArea.append(addedTagNumber);
+                        addedTagNumbersArea.append("LotNumber :"+lotNumber+"\n");
+                        addedTagNumbersArea.append("Tag Number(s):"+"\n"+tagNumber);
                     } else {
-                        addedTagNumbersArea.append(",");
-                        addedTagNumbersArea.append(addedTagNumber);
+                        addedTagNumbersArea.append(","+"\n");
+                        addedTagNumbersArea.append(tagNumber);
                     }
                 }
 
