@@ -93,19 +93,25 @@ public class LoadDetails {
         // Set the selected item to null to ensure no item is pre-selected
         Page2.blockComboBox.setSelectedItem(null);
     }
+
     void populateMouzaBox(String selectedBlock) {
+        // Clear the combobox items
         Page2.mouzaComboBox.removeAllItems();
-        try {
-            String query = "SELECT Mouza_name FROM mouzaDetails WHERE Block_name = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        String query = "SELECT Mouza_name FROM mouzaDetails WHERE Block_name = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            // Set the parameter for the block name
             preparedStatement.setString(1, selectedBlock);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Page2.mouzaComboBox.addItem(resultSet.getString("Mouza_name"));
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String mouzaName = resultSet.getString("Mouza_name");
+                    Page2.mouzaComboBox.addItem(mouzaName);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        Page2.blockComboBox.setSelectedItem(null);
+        Page2.mouzaComboBox.setSelectedItem(null);
     }
+
 }

@@ -208,17 +208,18 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, blockComboBox, 5, SpringLayout.SOUTH, blockLabel);
         layout.putConstraint(SpringLayout.WEST, blockComboBox, 500 + leftMargin, SpringLayout.WEST, this);
 
-//        blockComboBox.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                String selectedBlock = (String) blockComboBox.getSelectedItem();
-//                if(selectedBlock!=null){
-//                    l.populateMouzaBox(selectedBlock);
-//                    mouzaComboBox.setSelectedItem(null);
-////
-//                }
-//            }
-//        });
+        blockComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Get the selected block name from the blockComboBox
+                String selectedBlock = (String) blockComboBox.getSelectedItem();
+                l.populateMouzaBox(selectedBlock);
+            }
+        });
+
+
+
+
 
         JLabel mouzaLabel = new JLabel("Mouza:");
         add(mouzaLabel);
@@ -232,6 +233,7 @@ public class Page2 extends JPanel implements ActionListener  {
         add(mouzaComboBox);
         layout.putConstraint(SpringLayout.NORTH, mouzaComboBox, 5, SpringLayout.SOUTH, mouzaLabel);
         layout.putConstraint(SpringLayout.WEST, mouzaComboBox, 750 + leftMargin, SpringLayout.WEST, this);
+
 
         // Row 4
         JLabel areaLabel = new JLabel("Area (in ha):");
@@ -472,14 +474,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, addCropButton, verticalSpacing+5, SpringLayout.NORTH, billReceiptField);
         layout.putConstraint(SpringLayout.WEST, addCropButton, 500+leftMargin, SpringLayout.WEST, this);
 
-        // Add visibility constraints for the buttons
 
-
-
-//        addCropButton.addActionListener(e -> {
-//            String textField1Value = page1.getTextField1Value();
-//            JOptionPane.showMessageDialog(Page2.this, "Data to save:\nField 1: " + textField1Value);
-//        });
 
         String[] columnNames = {"Sl No", "RO Name", "Crop", "Variety", "Source Class", "Class to be produced", "Plot No", "District", "Block", "Mouza","Area (hectare)", "Edit", "Remove"};
         tableModel = new DefaultTableModel(columnNames, 0) {
