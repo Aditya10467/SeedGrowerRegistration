@@ -1,11 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Page1 extends JPanel {
     private JTextField nameField, pinField, emailField, mobileField, alternateMobileField;
     private JTextField fatherField;
     private JTextField houseField;
-    private JComboBox<String> relationField, districtField, blockField, mouzaField, identificationField;
+    static JComboBox<String> relationField, districtField, blockField, mouzaField, identificationField;
     private TitleBarPanel titleBar;
 
     public Page1() {
@@ -26,6 +28,9 @@ public class Page1 extends JPanel {
         // Add more spacing between the title bar and the first row of components
         int verticalSpacing = 20; // Increase the vertical spacing to 20 pixels
         int leftMargin = 180; // Additional left margin to center the form
+
+        LoadDetails l=new LoadDetails();
+        l.connectToDatabase();
 
         // Name
         JLabel nameLabel = new JLabel("Name");
@@ -85,9 +90,20 @@ public class Page1 extends JPanel {
         districtField = new JComboBox<>();
         districtField.setBackground(new Color(255,255,255));
         districtField.setPreferredSize(new Dimension(200, 30));
+        l.populateDistrictField();
         add(districtField);
         layout.putConstraint(SpringLayout.NORTH, districtField, 5, SpringLayout.SOUTH, districtLabel);
         layout.putConstraint(SpringLayout.WEST, districtField, leftMargin, SpringLayout.WEST, this);
+
+        districtField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedDistrict=(String)districtField.getSelectedItem();
+                if(selectedDistrict!=null){
+                    l.populateBlockField(selectedDistrict);
+                }
+            }
+        });
 
         // Block
         JLabel blockLabel = new JLabel("Block");
@@ -101,6 +117,15 @@ public class Page1 extends JPanel {
         add(blockField);
         layout.putConstraint(SpringLayout.NORTH, blockField, 5, SpringLayout.SOUTH, blockLabel);
         layout.putConstraint(SpringLayout.WEST, blockField, 250 + leftMargin, SpringLayout.WEST, this);
+
+        blockField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedBlock=(String) blockField.getSelectedItem();
+                    l.populateMouzaField(selectedBlock);
+
+            }
+        });
 
         // Mouza
         JLabel mouzaLabel = new JLabel("Mouza");
@@ -186,7 +211,7 @@ public class Page1 extends JPanel {
             cl.show(getParent(), "Page 2");
         });
         add(nextButton);
-        layout.putConstraint(SpringLayout.NORTH, nextButton, 20, SpringLayout.SOUTH, identificationField);
+        layout.putConstraint(SpringLayout.NORTH, nextButton, 40, SpringLayout.SOUTH, identificationField);
         layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, nextButton, 0, SpringLayout.HORIZONTAL_CENTER, this);
 
         // Add a resize listener to adjust the title bar width

@@ -14,21 +14,14 @@ import java.util.ArrayList;
 public class Page2 extends JPanel implements ActionListener  {
     private Page1 page1;
     private DefaultTableModel tableModel;
-
     JTextArea packagingArea,addedTagNumbersArea, challanDetailsArea;
-
     JDateChooser dateField;
-    JTable table;
+    static JTable table;
     ArrayList<Data> dataList = new ArrayList<>();
-
-
     private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-
-
     JLabel sourceOfSeedsLabel,roUnitOfficeLabel;
     JButton addCropButton;
-
-    JTextField sourceOfSeedsField,plotNoField,areaField,lotNumberField,tagNumberField,weightPerBagField,numberOfBagsField,billReceiptField;
+    static JTextField sourceOfSeedsField,plotNoField,areaField,lotNumberField,tagNumberField,weightPerBagField,numberOfBagsField,billReceiptField;
     static JComboBox roUnitOfficeComboBox,monthOfSowingComboBox,weekOfSowingComboBox,varietyComboBox,sourceClassComboBox,classToBeProducedComboBox,districtComboBox,blockComboBox,mouzaComboBox,cropComboBox;
 
     public Page2(Page1 page1) {
@@ -483,7 +476,7 @@ public class Page2 extends JPanel implements ActionListener  {
                 return column == 11 || column == 12; // Allow editing only for "Edit" and "Remove" columns
             }
         };
-        JTable table = new JTable(tableModel);
+        table = new JTable(tableModel);
         table.getColumnModel().getColumn(11).setCellRenderer(new ButtonRenderer());
         table.getColumnModel().getColumn(11).setCellEditor(new ButtonEditor(new JCheckBox(), true, table));
         table.getColumnModel().getColumn(12).setCellRenderer(new ButtonRenderer());
@@ -600,10 +593,13 @@ public class Page2 extends JPanel implements ActionListener  {
             packagingArea.setText(null);
             challanDetailsArea.setText(null);
             dateField.setDate(null);
+
         } else if (e.getActionCommand().equals("Edit")) {
             int selectedRow=table.getSelectedRow();
             if(selectedRow!=-1){
                 JOptionPane.showMessageDialog(null,selectedRow+"clicked","button clicked",JOptionPane.INFORMATION_MESSAGE);
+                EditData e1=new EditData();
+                e1.editData(selectedRow);
             }
         }
 
@@ -649,6 +645,8 @@ public class Page2 extends JPanel implements ActionListener  {
                 if (selectedRow != -1) {
                     if (isEditButton) {
                         JOptionPane.showMessageDialog(null,selectedRow+"clicked","button clicked",JOptionPane.INFORMATION_MESSAGE);
+                        EditData edit=new EditData();
+                        edit.editData(selectedRow);
 
                         // Implement your edit logic here
                     } else {
