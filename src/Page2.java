@@ -577,38 +577,38 @@ public class Page2 extends JPanel implements ActionListener  {
 
             // Update the table model with the new data
             tableModel.addRow(new Object[]{sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area,"Edit","Remove"});
+
+            sourceOfSeedsField.setText("");
+            roUnitOfficeComboBox.setSelectedItem(null);
+            monthOfSowingComboBox.setSelectedItem(null);
+            weekOfSowingComboBox.setSelectedItem(null);
+            cropComboBox.setSelectedItem(null);
+            varietyComboBox.setSelectedItem(null);
+            sourceClassComboBox.setSelectedItem(null);
+            classToBeProducedComboBox.setSelectedItem(null);
+            plotNoField.setText("");
+            districtComboBox.setSelectedItem(null);
+            blockComboBox.setSelectedItem(null);
+            mouzaComboBox.setSelectedItem(null);
+            areaField.setText("");
+            lotNumberField.setText("");
+            tagNumberField.setText("");
+            weightPerBagField.setText("");
+            numberOfBagsField.setText("");
+            billReceiptField.setText("");
+            addedTagNumbersArea.setText(null);
+            packagingArea.setText(null);
+            challanDetailsArea.setText(null);
+            dateField.setDate(null);
+        } else if (e.getActionCommand().equals("Edit")) {
+            int selectedRow=table.getSelectedRow();
+            if(selectedRow!=-1){
+                JOptionPane.showMessageDialog(null,selectedRow+"clicked","button clicked",JOptionPane.INFORMATION_MESSAGE);
+            }
         }
 
 
-        sourceOfSeedsField.setText("");
-        roUnitOfficeComboBox.setSelectedItem(null);
-        monthOfSowingComboBox.setSelectedItem(null);
-        weekOfSowingComboBox.setSelectedItem(null);
-        cropComboBox.setSelectedItem(null);
-        varietyComboBox.setSelectedItem(null);
-        sourceClassComboBox.setSelectedItem(null);
-        classToBeProducedComboBox.setSelectedItem(null);
-        plotNoField.setText("");
-        districtComboBox.setSelectedItem(null);
-        blockComboBox.setSelectedItem(null);
-        mouzaComboBox.setSelectedItem(null);
-        areaField.setText("");
-        lotNumberField.setText("");
-        tagNumberField.setText("");
-        weightPerBagField.setText("");
-        numberOfBagsField.setText("");
-        billReceiptField.setText("");
-        addedTagNumbersArea.setText(null);
-        packagingArea.setText(null);
-        challanDetailsArea.setText(null);
-        dateField.setDate(null);
-
     }
-
-
-
-
-
 
     // Custom cell renderer for rendering buttons
     class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -618,7 +618,11 @@ public class Page2 extends JPanel implements ActionListener  {
         }
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            setText((value == null) ? "" : value.toString());
+            if (value instanceof Boolean) {
+                setText((Boolean) value ? "" : "Edit");
+            } else {
+                setText((value == null) ? "" : value.toString());
+            }
             return this;
         }
     }
@@ -644,6 +648,8 @@ public class Page2 extends JPanel implements ActionListener  {
                 int selectedRow = table.getSelectedRow();
                 if (selectedRow != -1) {
                     if (isEditButton) {
+                        JOptionPane.showMessageDialog(null,selectedRow+"clicked","button clicked",JOptionPane.INFORMATION_MESSAGE);
+
                         // Implement your edit logic here
                     } else {
                         // Remove the selected row from the table
