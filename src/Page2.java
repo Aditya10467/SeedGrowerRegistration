@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 public class Page2 extends JPanel implements ActionListener  {
     private Page1 page1;
-    private DefaultTableModel tableModel;
-    JTextArea packagingArea,addedTagNumbersArea, challanDetailsArea;
-    JDateChooser dateField;
+    static DefaultTableModel tableModel;
+    static JTextArea packagingArea,addedTagNumbersArea, challanDetailsArea;
+    static JDateChooser dateField;
     static JTable table;
-    ArrayList<Data> dataList = new ArrayList<>();
+    static ArrayList<Data> dataList = new ArrayList<>();
     private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
     JLabel sourceOfSeedsLabel,roUnitOfficeLabel;
     JButton addCropButton;
@@ -548,58 +548,14 @@ public class Page2 extends JPanel implements ActionListener  {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==addCropButton){
-            String sourceOfSeeds = sourceOfSeedsField.getText();
-            String roUnitOffice = (String) roUnitOfficeComboBox.getSelectedItem();
-            String crop = (String) cropComboBox.getSelectedItem();
-            String variety = (String) varietyComboBox.getSelectedItem();
-            String sourceClass = (String) sourceClassComboBox.getSelectedItem();
-            String classToBeProduced = (String) classToBeProducedComboBox.getSelectedItem();
-            String plotNo = plotNoField.getText();
-            String district = (String) districtComboBox.getSelectedItem();
-            String block = (String) blockComboBox.getSelectedItem();
-            String mouza = (String) mouzaComboBox.getSelectedItem();
-            String area = areaField.getText();
-//            String lotNumber = lotNumberField.getText();
-//            String tagNumber = tagNumberField.getText();
-//            String weightPerBag = weightPerBagField.getText();
-//            String numberOfBags = numberOfBagsField.getText();
-//            String billReceipt = billReceiptField.getText();
-
-            Data newData = new Data(sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area);
-            dataList.add(newData);
-
-            // Update the table model with the new data
-            tableModel.addRow(new Object[]{sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area,"Edit","Remove"});
-
-            sourceOfSeedsField.setText("");
-            roUnitOfficeComboBox.setSelectedItem(null);
-            monthOfSowingComboBox.setSelectedItem(null);
-            weekOfSowingComboBox.setSelectedItem(null);
-            cropComboBox.setSelectedItem(null);
-            varietyComboBox.setSelectedItem(null);
-            sourceClassComboBox.setSelectedItem(null);
-            classToBeProducedComboBox.setSelectedItem(null);
-            plotNoField.setText("");
-            districtComboBox.setSelectedItem(null);
-            blockComboBox.setSelectedItem(null);
-            mouzaComboBox.setSelectedItem(null);
-            areaField.setText("");
-            lotNumberField.setText("");
-            tagNumberField.setText("");
-            weightPerBagField.setText("");
-            numberOfBagsField.setText("");
-            billReceiptField.setText("");
-            addedTagNumbersArea.setText(null);
-            packagingArea.setText(null);
-            challanDetailsArea.setText(null);
-            dateField.setDate(null);
-
+            EditData editData=new EditData();
+            editData.addData();
         } else if (e.getActionCommand().equals("Edit")) {
             int selectedRow=table.getSelectedRow();
             if(selectedRow!=-1){
                 JOptionPane.showMessageDialog(null,selectedRow+"clicked","button clicked",JOptionPane.INFORMATION_MESSAGE);
-                EditData e1=new EditData();
-                e1.editData(selectedRow);
+//                EditData e1=new EditData();
+//                e1.editData(selectedRow);
             }
         }
 
@@ -651,7 +607,8 @@ public class Page2 extends JPanel implements ActionListener  {
                         // Implement your edit logic here
                     } else {
                         // Remove the selected row from the table
-                        removeRow(table, tableModel, selectedRow);
+                        EditData editData=new EditData();
+                        editData.removeRow(table, tableModel, selectedRow);
 
                     }
                 }
@@ -662,27 +619,6 @@ public class Page2 extends JPanel implements ActionListener  {
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             return button;
-        }
-    }
-    private void shiftRows(DefaultTableModel model, int index) {
-        for (int i = index + 1; i < model.getRowCount(); i++) {
-            model.setValueAt(model.getValueAt(i, 0), i - 1, 0);
-        }
-        model.removeRow(model.getRowCount() - 1);
-    }
-    private void removeRow(JTable table, DefaultTableModel model, int selectedRow) {
-        if (selectedRow != -1 && !table.isEditing()) {
-            if (selectedRow < model.getRowCount() - 1) {
-                shiftRows(model, selectedRow);
-            } else {
-                model.removeRow(selectedRow);
-            }
-        } else if (selectedRow != -1 && table.isEditing()) {
-            TableCellEditor editor = table.getCellEditor(table.getEditingRow(), table.getEditingColumn());
-            if (editor != null) {
-                editor.stopCellEditing();
-            }
-            model.removeRow(selectedRow);
         }
     }
 }
