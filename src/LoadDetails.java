@@ -114,4 +114,66 @@ public class LoadDetails {
         Page2.mouzaComboBox.setSelectedItem(null);
     }
 
+    void populateDistrictField() {
+        Page1.districtField.removeAllItems();
+        try {
+            String query = "SELECT DISTINCT District_name FROM blockstable"; // Replace with your table name
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String districtName = resultSet.getString("District_name");
+                //System.out.println("District Name: " + districtName);
+                Page1.districtField.addItem(districtName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    void populateBlockField(String selectedDistrict) {
+        // Clear the combobox items
+        Page1.blockField.removeAllItems();
+
+        // Database query to get block names for the selected district
+        String query = "SELECT Block_name FROM blockstable WHERE District_name = ?";
+
+        // Use try-with-resources to ensure resources are closed properly
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            // Set the parameter for the district name
+            preparedStatement.setString(1, selectedDistrict);
+
+            // Execute the query and get the result set
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                // Iterate through the result set and add block names to the combobox
+                while (resultSet.next()) {
+                    String blockName = resultSet.getString("Block_name");
+                    Page1.blockField.addItem(blockName);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Set the selected item to null to ensure no item is pre-selected
+        Page1.blockField.setSelectedItem(null);
+    }
+    void populateMouzaField(String selectedBlock) {
+        // Clear the combobox items
+        Page1.mouzaField.removeAllItems();
+        String query = "SELECT Mouza_name FROM mouzaDetails WHERE Block_name = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            // Set the parameter for the block name
+            preparedStatement.setString(1, selectedBlock);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String mouzaName = resultSet.getString("Mouza_name");
+                    Page1.mouzaField.addItem(mouzaName);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Page1.mouzaField.setSelectedItem(null);
+    }
+
 }
