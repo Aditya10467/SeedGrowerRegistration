@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07c591b5-50ab-42e8-8e7b-12451abdc3fe" name="Changes" comment="Adds libraries">
+    <list default="true" id="07c591b5-50ab-42e8-8e7b-12451abdc3fe" name="Changes" comment="Adds page1 and edit functionality">
       <change afterPath="$PROJECT_DIR$/src/CropData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EditData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoadDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoadDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Page1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EditData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EditData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Page2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717052025431</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Adds page1 and edit functionality">
+      <created>1717066423165</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717066423165</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,6 +151,7 @@
     <MESSAGE value="Adds notEmpty checks" />
     <MESSAGE value="Adds mouza box functionality" />
     <MESSAGE value="Adds libraries" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adds libraries" />
+    <MESSAGE value="Adds page1 and edit functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adds page1 and edit functionality" />
   </component>
 </project>
