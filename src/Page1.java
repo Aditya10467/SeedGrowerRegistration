@@ -91,6 +91,7 @@ public class Page1 extends JPanel {
         districtField.setBackground(new Color(255,255,255));
         districtField.setPreferredSize(new Dimension(200, 30));
         l.populateDistrictField();
+        districtField.setSelectedItem(null);
         add(districtField);
         layout.putConstraint(SpringLayout.NORTH, districtField, 5, SpringLayout.SOUTH, districtLabel);
         layout.putConstraint(SpringLayout.WEST, districtField, leftMargin, SpringLayout.WEST, this);
@@ -114,6 +115,7 @@ public class Page1 extends JPanel {
         blockField = new JComboBox<>();
         blockField.setBackground(new Color(255,255,255));
         blockField.setPreferredSize(new Dimension(200, 30));
+        blockField.setSelectedItem(null);
         add(blockField);
         layout.putConstraint(SpringLayout.NORTH, blockField, 5, SpringLayout.SOUTH, blockLabel);
         layout.putConstraint(SpringLayout.WEST, blockField, 250 + leftMargin, SpringLayout.WEST, this);
@@ -136,6 +138,7 @@ public class Page1 extends JPanel {
         mouzaField = new JComboBox<>();
         mouzaField.setBackground(new Color(255,255,255));
         mouzaField.setPreferredSize(new Dimension(200, 30));
+        mouzaField.setSelectedItem(null);
         add(mouzaField);
         layout.putConstraint(SpringLayout.NORTH, mouzaField, 5, SpringLayout.SOUTH, mouzaLabel);
         layout.putConstraint(SpringLayout.WEST, mouzaField, 500 + leftMargin, SpringLayout.WEST, this);

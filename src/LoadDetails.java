@@ -8,7 +8,7 @@ public class LoadDetails {
     void connectToDatabase() {
         try {
             Class.forName("org.sqlite.JDBC");
-            String dbFilePath = "jdbc:sqlite:cropdb.db"; // Update this with your database file path
+            String dbFilePath = "jdbc:sqlite:cropdb1.db"; // Update this with your database file path
             connection = DriverManager.getConnection(dbFilePath);
             statement = connection.createStatement();
         } catch (SQLException | ClassNotFoundException e) {
@@ -141,11 +141,11 @@ public class LoadDetails {
     void populateDistrictField() {
         Page1.districtField.removeAllItems();
         try {
-            String query = "SELECT DISTINCT District_name FROM blockstable"; // Replace with your table name
+            String query = "SELECT districtName FROM districtMaster"; // Replace with your table name
             resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                String districtName = resultSet.getString("District_name");
+                String districtName = resultSet.getString("districtName");
                 //System.out.println("District Name: " + districtName);
                 Page1.districtField.addItem(districtName);
             }
@@ -158,7 +158,7 @@ public class LoadDetails {
         Page1.blockField.removeAllItems();
 
         // Database query to get block names for the selected district
-        String query = "SELECT Block_name FROM blockstable WHERE District_name = ?";
+        String query = "SELECT blockName FROM blockMaster WHERE districtName = ?";
 
         // Use try-with-resources to ensure resources are closed properly
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -169,7 +169,7 @@ public class LoadDetails {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 // Iterate through the result set and add block names to the combobox
                 while (resultSet.next()) {
-                    String blockName = resultSet.getString("Block_name");
+                    String blockName = resultSet.getString("blockName");
                     Page1.blockField.addItem(blockName);
                 }
             }
@@ -183,14 +183,14 @@ public class LoadDetails {
     void populateMouzaField(String selectedBlock) {
         // Clear the combobox items
         Page1.mouzaField.removeAllItems();
-        String query = "SELECT Mouza_name FROM mouzaDetails WHERE Block_name = ?";
+        String query = "SELECT villageName FROM villageMaster WHERE blockName = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             // Set the parameter for the block name
             preparedStatement.setString(1, selectedBlock);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    String mouzaName = resultSet.getString("Mouza_name");
+                    String mouzaName = resultSet.getString("villageName");
                     Page1.mouzaField.addItem(mouzaName);
                 }
             }
