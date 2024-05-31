@@ -57,26 +57,37 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, sourceOfSeedsField, 5, SpringLayout.SOUTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, sourceOfSeedsField, leftMargin, SpringLayout.WEST, this);
 
-        roUnitOfficeLabel = new JLabel("RO / Unit Office:");
+        JLabel roUnitOfficeLabel = new JLabel("RO / Unit Office:");
         add(roUnitOfficeLabel);
         layout.putConstraint(SpringLayout.NORTH, roUnitOfficeLabel, 0, SpringLayout.NORTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, roUnitOfficeLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
-        roUnitOfficeComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        roUnitOfficeComboBox = new JComboBox<>(new String[]{});
         roUnitOfficeComboBox.setBackground(new Color(255,255,255));
         roUnitOfficeComboBox.setPreferredSize(new Dimension(150,20));
+        l.populateROBox();
+        roUnitOfficeComboBox.setSelectedItem(null);
         add(roUnitOfficeComboBox);
         layout.putConstraint(SpringLayout.NORTH, roUnitOfficeComboBox, 5, SpringLayout.SOUTH, roUnitOfficeLabel);
         layout.putConstraint(SpringLayout.WEST, roUnitOfficeComboBox, 250 + leftMargin, SpringLayout.WEST, this);
+
+        roUnitOfficeComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedRO = (String) roUnitOfficeComboBox.getSelectedItem();
+                    l.populateDistrictBox(selectedRO);
+            }
+        });
 
         JLabel monthOfSowingLabel = new JLabel("Month of Sowing:");
         add(monthOfSowingLabel);
         layout.putConstraint(SpringLayout.NORTH, monthOfSowingLabel, 0, SpringLayout.NORTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, monthOfSowingLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
-        monthOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--","January","February","March","April","May","June","July","August","September","October","November","December"});
+        monthOfSowingComboBox = new JComboBox<>(new String[]{"January","February","March","April","May","June","July","August","September","October","November","December"});
         monthOfSowingComboBox.setBackground(new Color(255,255,255));
         monthOfSowingComboBox.setPreferredSize(new Dimension(150,20));
+        monthOfSowingComboBox.setSelectedItem(null);
         add(monthOfSowingComboBox);
         layout.putConstraint(SpringLayout.NORTH, monthOfSowingComboBox, 5, SpringLayout.SOUTH, monthOfSowingLabel);
         layout.putConstraint(SpringLayout.WEST, monthOfSowingComboBox, 500 + leftMargin, SpringLayout.WEST, this);
@@ -86,9 +97,10 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, weekOfSowingLabel, 0, SpringLayout.NORTH, sourceOfSeedsLabel);
         layout.putConstraint(SpringLayout.WEST, weekOfSowingLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
-        weekOfSowingComboBox = new JComboBox<>(new String[]{"--SELECT--","1","2","3","4","5"});
+        weekOfSowingComboBox = new JComboBox<>(new String[]{"1","2","3","4","5"});
         weekOfSowingComboBox.setBackground(new Color(255,255,255));
         weekOfSowingComboBox.setPreferredSize(new Dimension(150,20));
+        weekOfSowingComboBox.setSelectedItem(null);
         add(weekOfSowingComboBox);
         layout.putConstraint(SpringLayout.NORTH, weekOfSowingComboBox, 5, SpringLayout.SOUTH, weekOfSowingLabel);
         layout.putConstraint(SpringLayout.WEST, weekOfSowingComboBox, 750 + leftMargin, SpringLayout.WEST, this);
@@ -99,7 +111,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, cropLabel, verticalSpacing, SpringLayout.SOUTH, sourceOfSeedsField);
         layout.putConstraint(SpringLayout.WEST, cropLabel, leftMargin, SpringLayout.WEST, this);
 
-        cropComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        cropComboBox = new JComboBox<>(new String[]{});
         cropComboBox.setBackground(new Color(255,255,255));
         cropComboBox.setPreferredSize(new Dimension(150,20));
         l.populateCropBox();
@@ -112,9 +124,7 @@ public class Page2 extends JPanel implements ActionListener  {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedCrop=(String) cropComboBox.getSelectedItem();
-                if(selectedCrop!="--SELECT--"){
-                    l.populateVarietyBox(selectedCrop);
-                }
+                l.populateVarietyBox(selectedCrop);
             }
         });
 
@@ -123,7 +133,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, varietyLabel, 0, SpringLayout.NORTH, cropLabel);
         layout.putConstraint(SpringLayout.WEST, varietyLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
-        varietyComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        varietyComboBox = new JComboBox<>(new String[]{});
         varietyComboBox.setBackground(new Color(255,255,255));
         varietyComboBox.setPreferredSize(new Dimension(150,20));
         add(varietyComboBox);
@@ -135,9 +145,10 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, sourceClassLabel, 0, SpringLayout.NORTH, cropLabel);
         layout.putConstraint(SpringLayout.WEST, sourceClassLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
-        sourceClassComboBox = new JComboBox<>(new String[]{"--SELECT--","Fundamental","Breeder"});
+        sourceClassComboBox = new JComboBox<>(new String[]{"Fundamental","Breeder"});
         sourceClassComboBox.setBackground(new Color(255,255,255));
         sourceClassComboBox.setPreferredSize(new Dimension(150,20));
+        sourceClassComboBox.setSelectedItem(null);
         add(sourceClassComboBox);
         layout.putConstraint(SpringLayout.NORTH, sourceClassComboBox, 5, SpringLayout.SOUTH, sourceClassLabel);
         layout.putConstraint(SpringLayout.WEST, sourceClassComboBox, 500 + leftMargin, SpringLayout.WEST, this);
@@ -147,9 +158,10 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, classToBeProducedLabel, 0, SpringLayout.NORTH, cropLabel);
         layout.putConstraint(SpringLayout.WEST, classToBeProducedLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
-        classToBeProducedComboBox = new JComboBox<>(new String[]{"--SELECT--","Fundamental","Breeder"});
+        classToBeProducedComboBox = new JComboBox<>(new String[]{"Fundamental","Breeder"});
         classToBeProducedComboBox.setBackground(new Color(255,255,255));
         classToBeProducedComboBox.setPreferredSize(new Dimension(150,20));
+        classToBeProducedComboBox.setSelectedItem(null);
         add(classToBeProducedComboBox);
         layout.putConstraint(SpringLayout.NORTH, classToBeProducedComboBox, 5, SpringLayout.SOUTH, classToBeProducedLabel);
         layout.putConstraint(SpringLayout.WEST, classToBeProducedComboBox, 750 + leftMargin, SpringLayout.WEST, this);
@@ -170,11 +182,9 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, districtLabel, 0, SpringLayout.NORTH, plotNoLabel);
         layout.putConstraint(SpringLayout.WEST, districtLabel, 250 + leftMargin, SpringLayout.WEST, this);
 
-        districtComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        districtComboBox = new JComboBox<>(new String[]{});
         districtComboBox.setBackground(new Color(255,255,255));
         districtComboBox.setPreferredSize(new Dimension(150,20));
-        l.populateDistrictBox();
-        districtComboBox.setSelectedItem(null);
         add(districtComboBox);
         layout.putConstraint(SpringLayout.NORTH, districtComboBox, 5, SpringLayout.SOUTH, districtLabel);
         layout.putConstraint(SpringLayout.WEST, districtComboBox, 250 + leftMargin, SpringLayout.WEST, this);
@@ -183,9 +193,9 @@ public class Page2 extends JPanel implements ActionListener  {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedDistrict = (String) districtComboBox.getSelectedItem();
-                if(selectedDistrict!=null){
-                    l.populateBlockBox(selectedDistrict);
-                }
+
+                l.populateBlockBox(selectedDistrict);
+
             }
         });
 
@@ -194,7 +204,7 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, blockLabel, 0, SpringLayout.NORTH, plotNoLabel);
         layout.putConstraint(SpringLayout.WEST, blockLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
-        blockComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        blockComboBox = new JComboBox<>(new String[]{});
         blockComboBox.setBackground(new Color(255,255,255));
         blockComboBox.setPreferredSize(new Dimension(150,20));
         add(blockComboBox);
@@ -219,13 +229,14 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, mouzaLabel, 0, SpringLayout.NORTH, plotNoLabel);
         layout.putConstraint(SpringLayout.WEST, mouzaLabel, 750 + leftMargin, SpringLayout.WEST, this);
 
-        mouzaComboBox = new JComboBox<>(new String[]{"--SELECT--"});
+        mouzaComboBox = new JComboBox<>(new String[]{});
         mouzaComboBox.setBackground(new Color(255,255,255));
         mouzaComboBox.setPreferredSize(new Dimension(150,20));
         mouzaComboBox.setSelectedItem(null);
         add(mouzaComboBox);
         layout.putConstraint(SpringLayout.NORTH, mouzaComboBox, 5, SpringLayout.SOUTH, mouzaLabel);
         layout.putConstraint(SpringLayout.WEST, mouzaComboBox, 750 + leftMargin, SpringLayout.WEST, this);
+
 
 
         // Row 4
