@@ -7,8 +7,11 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Array;
+import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Page2 extends JPanel implements ActionListener  {
@@ -18,9 +21,11 @@ public class Page2 extends JPanel implements ActionListener  {
     static JDateChooser dateField;
     static JTable table;
     static ArrayList<Data> dataList = new ArrayList<>();
+
+    static ArrayList<CropData> cropDataList=new ArrayList<>();
     private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
     JLabel sourceOfSeedsLabel,roUnitOfficeLabel;
-    JButton addCropButton;
+    static JButton addCropButton,saveButton;
     static JTextField sourceOfSeedsField,plotNoField,areaField,lotNumberField,tagNumberField,weightPerBagField,numberOfBagsField,billReceiptField;
     static JComboBox roUnitOfficeComboBox,monthOfSowingComboBox,weekOfSowingComboBox,varietyComboBox,sourceClassComboBox,classToBeProducedComboBox,districtComboBox,blockComboBox,mouzaComboBox,cropComboBox;
 
@@ -506,9 +511,10 @@ public class Page2 extends JPanel implements ActionListener  {
         layout.putConstraint(SpringLayout.NORTH, backButton, verticalSpacing, SpringLayout.SOUTH, scrollPane);
         layout.putConstraint(SpringLayout.WEST, backButton, 450 + leftMargin, SpringLayout.WEST, this);
 
-        JButton saveButton = new JButton("SAVE");
+        saveButton = new JButton("SAVE");
         saveButton.setBackground(new Color(243, 142, 57));
         saveButton.setForeground(new Color(255,255,255));
+        saveButton.addActionListener(this);
         add(saveButton);
         //saveButton.addActionListener(this);
         layout.putConstraint(SpringLayout.NORTH, saveButton, verticalSpacing, SpringLayout.SOUTH, scrollPane);
@@ -568,6 +574,14 @@ public class Page2 extends JPanel implements ActionListener  {
 //                EditData e1=new EditData();
 //                e1.editData(selectedRow);
             }
+        } else if (e.getSource()==saveButton) {
+            for (CropData cropData : cropDataList) {
+                System.out.println(cropData);
+            }
+//            for(Data data:dataList){
+//                System.out.println(data);
+//            }
+//            System.out.println("Hello World");
         }
 
 
