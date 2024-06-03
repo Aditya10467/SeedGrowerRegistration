@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Page1 extends JPanel {
-    private JTextField nameField, pinField, emailField, mobileField, alternateMobileField;
-    private JTextField fatherField;
-    private JTextField houseField;
+    static JTextField nameField, pinField, emailField, mobileField, alternateMobileField;
+    static JTextField fatherField;
+    static JTextField houseField;
     static JComboBox<String> relationField, districtField, blockField, mouzaField, identificationField;
     private TitleBarPanel titleBar;
 
@@ -63,6 +63,9 @@ public class Page1 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, relationLabel, 500 + leftMargin, SpringLayout.WEST, this);
 
         relationField = new JComboBox<>();
+        relationField.addItem("Father");
+        relationField.addItem("Husband");
+        relationField.addItem("Organisation");
         relationField.setPreferredSize(new Dimension(200, 30));
         relationField.setBackground(new Color(255,255,255));
         add(relationField);
@@ -198,6 +201,8 @@ public class Page1 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, identificationLabel, leftMargin, SpringLayout.WEST, this);
 
         identificationField = new JComboBox<>();
+        identificationField.addItem("Aadhar Card");
+        identificationField.addItem("PAN Card");
         identificationField.setBackground(new Color(255,255,255));
         identificationField.setPreferredSize(new Dimension(450, 30));
         add(identificationField);

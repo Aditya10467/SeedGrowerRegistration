@@ -2,8 +2,11 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class EditData {
+
+
     void editData(int rowIndex) {
         // Remove existing action listeners to avoid multiple triggers
         for (ActionListener al : Page2.addCropButton.getActionListeners()) {
@@ -136,8 +139,11 @@ public class EditData {
         String challanDetails = Page2.challanDetailsArea.getText();
         String weekOfSowing = (String) Page2.weekOfSowingComboBox.getSelectedItem();
         String monthOfSowing = (String) Page2.monthOfSowingComboBox.getSelectedItem();
+        ArrayList packagingList=Page2.packagingList;
 
-        CropData newCropData = new CropData(sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area, tagNumbers, packagingDetails, challanDetails, weekOfSowing, monthOfSowing);
+
+
+        CropData newCropData = new CropData(sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area, tagNumbers, packagingDetails, challanDetails, weekOfSowing, monthOfSowing,packagingList);
         Page2.cropDataList.add(newCropData);
 
         // Update the table model with the new data
@@ -205,4 +211,11 @@ public class EditData {
         Page2.challanDetailsArea.setText(null);
         Page2.dateField.setDate(null);
     }
+
+    void addPackaging(int weight,int noOfBags){
+        PackagingDetails p=new PackagingDetails(weight,noOfBags);
+        Page2.packagingList.add(p);
+    }
+
+
 }

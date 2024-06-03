@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class CropData {
     String sourceOfSeeds;
     String roName;
@@ -16,7 +18,11 @@ public class CropData {
     String weekofSowing;
     String monthOfSowing;
 
-    public CropData(String sourceOfSeeds, String roName, String crop, String variety, String sourceClass, String classToBeProduced, String plotNo, String district, String block, String mouza, String area, String tagNumbers, String packagingDetails, String challanDetails, String weekofSowing, String monthOfSowing) {
+    ArrayList packagingData;
+
+
+
+    public CropData(String sourceOfSeeds, String roName, String crop, String variety, String sourceClass, String classToBeProduced, String plotNo, String district, String block, String mouza, String area, String tagNumbers, String packagingDetails, String challanDetails, String weekofSowing, String monthOfSowing, ArrayList packagingData) {
         this.sourceOfSeeds = sourceOfSeeds;
         this.roName = roName;
         this.crop = crop;
@@ -33,6 +39,7 @@ public class CropData {
         this.challanDetails = challanDetails;
         this.weekofSowing = weekofSowing;
         this.monthOfSowing = monthOfSowing;
+        this.packagingData=packagingData;
     }
 
     public String getWeekofSowing() {
@@ -66,7 +73,7 @@ public class CropData {
                 ", mouza='" + mouza + '\'' +
                 ", area='" + area + '\'' +
                 ", tagNumbers='" + tagNumbers + '\'' +
-                ", packagingDetails='" + packagingDetails + '\'' +
+                ", packagingDetails='" + packagingData + '\'' +
                 ", challanDetails='" + challanDetails + '\'' +
                 '}';
     }
@@ -183,21 +190,12 @@ public class CropData {
         this.challanDetails = challanDetails;
     }
 
-    public CropData(String sourceOfSeeds, String roName, String crop, String variety, String sourceClass, String classToBeProduced, String plotNo, String district, String block, String mouza, String area, String tagNumbers, String packagingDetails, String challanDetails) {
-        this.sourceOfSeeds = sourceOfSeeds;
-        this.roName = roName;
-        this.crop = crop;
-        this.variety = variety;
-        this.sourceClass = sourceClass;
-        this.classToBeProduced = classToBeProduced;
-        this.plotNo = plotNo;
-        this.district = district;
-        this.block = block;
-        this.mouza = mouza;
-        this.area = area;
-        this.tagNumbers = tagNumbers;
-        this.packagingDetails = packagingDetails;
-        this.challanDetails = challanDetails;
+    public ArrayList getPackagingData() {
+        return packagingData;
+    }
+
+    public void setPackagingData(ArrayList packagingData) {
+        this.packagingData = packagingData;
     }
 
 

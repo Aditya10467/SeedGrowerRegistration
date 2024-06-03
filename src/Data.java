@@ -1,73 +1,164 @@
-class Data {
-    String sourceOfSeeds, roName, crop, variety,sourceClass,classToBeProduced,plotNo,district,block,mouza,area;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Data {
+
+    // Scalar properties from Page1
+    private String name;
+    private String pinCode;
+    private String email;
+    private String mobile;
+    private String alternateMobile;
+    private String fatherOrHusbandOrOrganisation;
+    private String houseNoOrLandMark;
+    private String relation;
+    private String district;
+    private String block;
+    private String mouza;
+    private String identificationType;
+
+    // Navigational property referring to CropData
+    private ArrayList<CropData> cropDataList;
+
+    // Constructor
+    public Data(String name,String fatherOrHusbandOrOrganisation,String relation, String houseNoOrLandMark, String district, String block, String mouza,String pinCode, String email, String mobile, String alternateMobile, String identificationType, ArrayList<CropData> cropDataList) {
+        this.name = name;
+        this.pinCode = pinCode;
+        this.email = email;
+        this.mobile = mobile;
+        this.alternateMobile = alternateMobile;
+        this.fatherOrHusbandOrOrganisation = fatherOrHusbandOrOrganisation;
+        this.houseNoOrLandMark = houseNoOrLandMark;
+        this.relation = relation;
+        this.district = district;
+        this.block = block;
+        this.mouza = mouza;
+        this.identificationType = identificationType;
+        this.cropDataList = cropDataList;
+    }
+
+    // Getters and setters for scalar properties
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(String pinCode) {
+        this.pinCode = pinCode;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getAlternateMobile() {
+        return alternateMobile;
+    }
+
+    public void setAlternateMobile(String alternateMobile) {
+        this.alternateMobile = alternateMobile;
+    }
+
+    public String getFatherOrHusbandOrOrganisation() {
+        return fatherOrHusbandOrOrganisation;
+    }
+
+    public void setFatherOrHusbandOrOrganisation(String fatherOrHusbandOrOrganisation) {
+        this.fatherOrHusbandOrOrganisation = fatherOrHusbandOrOrganisation;
+    }
+
+    public String getHouseNoOrLandMark() {
+        return houseNoOrLandMark;
+    }
 
     @Override
     public String toString() {
         return "Data{" +
-                "sourceOfSeeds='" + sourceOfSeeds + '\'' +
-                ", roName='" + roName + '\'' +
-                ", crop='" + crop + '\'' +
-                ", variety='" + variety + '\'' +
-                ", sourceClass='" + sourceClass + '\'' +
-                ", classToBeProduced='" + classToBeProduced + '\'' +
-                ", plotNo='" + plotNo + '\'' +
+                "name='" + name + '\'' +
+                ", fatherOrHusbandOrOrganisation='" + fatherOrHusbandOrOrganisation + '\'' +
+                ", relation='" + relation + '\'' +
+                ", houseNoOrLandMark='" + houseNoOrLandMark + '\'' +
                 ", district='" + district + '\'' +
                 ", block='" + block + '\'' +
                 ", mouza='" + mouza + '\'' +
-                ", area='" + area + '\'' +
+                ", pinCode='" + pinCode + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", alternateMobile='" + alternateMobile + '\'' +
+                ", identificationType='" + identificationType + '\'' +
+                ", cropDataList=" + cropDataList +
                 '}';
     }
 
-    public String getSourceOfSeeds() {
-        return sourceOfSeeds;
+    public void setHouseNoOrLandMark(String houseNoOrLandMark) {
+        this.houseNoOrLandMark = houseNoOrLandMark;
     }
 
-    public String getRoName() {
-        return roName;
+    public String getRelation() {
+        return relation;
     }
 
-    public String getCrop() {
-        return crop;
+    public void setRelation(String relation) {
+        this.relation = relation;
     }
 
-    public String getVariety() {
-        return variety;
+    public String getDistrict() {
+        return district;
     }
 
-    public String getSourceClass() {
-        return sourceClass;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
-    public String getClassToBeProduced() {
-        return classToBeProduced;
+    public String getBlock() {
+        return block;
     }
 
-    public String getPlotNo() {
-        return plotNo;
+    public void setBlock(String block) {
+        this.block = block;
     }
 
     public String getMouza() {
         return mouza;
     }
 
-    public String getArea() {
-        return area;
-    }
-
-
-    public Data(String sourceOfSeeds, String roName, String crop, String variety, String sourceClass, String classToBeProduced, String plotNo, String district, String block, String mouza, String area) {
-        this.sourceOfSeeds = sourceOfSeeds;
-        this.roName = roName;
-        this.crop = crop;
-        this.variety = variety;
-        this.sourceClass = sourceClass;
-        this.classToBeProduced = classToBeProduced;
-        this.plotNo = plotNo;
-        this.district = district;
-        this.block = block;
+    public void setMouza(String mouza) {
         this.mouza = mouza;
-        this.area = area;
     }
 
-}
+    public String getIdentificationType() {
+        return identificationType;
+    }
 
+    public void setIdentificationType(String identificationType) {
+        this.identificationType = identificationType;
+    }
+
+    // Getters and setters for navigational properties
+    public ArrayList<CropData> getCropDataList() {
+        return cropDataList;
+    }
+
+    public void setCropDataList(ArrayList<CropData> cropDataList) {
+        this.cropDataList = cropDataList;
+    }
+}
