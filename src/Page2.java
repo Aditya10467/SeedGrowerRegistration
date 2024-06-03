@@ -23,6 +23,7 @@ public class Page2 extends JPanel implements ActionListener  {
     static ArrayList<Data> dataList = new ArrayList<>();
 
     static ArrayList<CropData> cropDataList=new ArrayList<>();
+    static ArrayList<PackagingDetails> packagingList=new ArrayList<>();
     private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
     JLabel sourceOfSeedsLabel,roUnitOfficeLabel;
     static JButton addCropButton,saveButton;
@@ -403,13 +404,17 @@ public class Page2 extends JPanel implements ActionListener  {
                 }else{
                     int bagWeight=Integer.parseInt(weightPerBagField.getText());
                     int noOfBags=Integer.parseInt(numberOfBagsField.getText());
-                    String packagingDetails="{"+bagWeight+","+noOfBags+"}";
+                    EditData editData=new EditData();
+                    editData.addPackaging(bagWeight,noOfBags);
+                    //String packagingDetails="{"+bagWeight+","+noOfBags+"}";
 
                     if (packagingArea.getText().isEmpty()) {
-                        packagingArea.append(packagingDetails);
+                        packagingArea.append("Weight per bag :"+bagWeight+"\n");
+                        packagingArea.append("No of bags: "+noOfBags);
+                        //packagingArea.append(packagingDetails);
                     } else {
                         packagingArea.append(",");
-                        packagingArea.append(packagingDetails);
+                        //packagingArea.append(packagingDetails);
                     }
                 }
 
@@ -460,10 +465,11 @@ public class Page2 extends JPanel implements ActionListener  {
 
                     String addedTagNumber="{"+challanNo+","+date+"}";
                     if (challanDetailsArea.getText().isEmpty()) {
-                        challanDetailsArea.append(addedTagNumber);
+                        challanDetailsArea.append("Bill/Receipt No: "+challanNo+"\n");
+                        challanDetailsArea.append("Date: "+date);
                     } else {
                         challanDetailsArea.append(",");
-                        challanDetailsArea.append(addedTagNumber);
+                        //challanDetailsArea.append(addedTagNumber);
                     }
                 }
 
@@ -575,12 +581,17 @@ public class Page2 extends JPanel implements ActionListener  {
 //                e1.editData(selectedRow);
             }
         } else if (e.getSource()==saveButton) {
-            for (CropData cropData : cropDataList) {
-                System.out.println(cropData);
-            }
-//            for(Data data:dataList){
-//                System.out.println(data);
+            SaveData save=new SaveData();
+            save.saveData();
+//            for (CropData cropData : cropDataList) {
+//                System.out.println(cropData);
 //            }
+            for(Data data:dataList){
+                System.out.println(data);
+            }
+            for(PackagingDetails details:packagingList){
+                System.out.println(packagingList);
+            }
 //            System.out.println("Hello World");
         }
 
