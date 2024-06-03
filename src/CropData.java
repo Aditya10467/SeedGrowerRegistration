@@ -22,7 +22,7 @@ public class CropData {
 
 
 
-    public CropData(String sourceOfSeeds, String roName, String crop, String variety, String sourceClass, String classToBeProduced, String plotNo, String district, String block, String mouza, String area, String tagNumbers, String packagingDetails, String challanDetails, String weekofSowing, String monthOfSowing, ArrayList packagingData) {
+    public CropData(String sourceOfSeeds, String roName, String crop, String variety, String sourceClass, String classToBeProduced, String plotNo, String district, String block, String mouza, String area, String tagNumbers, String packagingDetails, String challanDetails, String weekofSowing, String monthOfSowing) {
         this.sourceOfSeeds = sourceOfSeeds;
         this.roName = roName;
         this.crop = crop;
@@ -39,7 +39,6 @@ public class CropData {
         this.challanDetails = challanDetails;
         this.weekofSowing = weekofSowing;
         this.monthOfSowing = monthOfSowing;
-        this.packagingData=packagingData;
     }
 
     public String getWeekofSowing() {
@@ -73,7 +72,7 @@ public class CropData {
                 ", mouza='" + mouza + '\'' +
                 ", area='" + area + '\'' +
                 ", tagNumbers='" + tagNumbers + '\'' +
-                ", packagingDetails='" + packagingData + '\'' +
+                ", packagingDetails='" + packagingDetails + '\'' +
                 ", challanDetails='" + challanDetails + '\'' +
                 '}';
     }
@@ -190,13 +189,7 @@ public class CropData {
         this.challanDetails = challanDetails;
     }
 
-    public ArrayList getPackagingData() {
-        return packagingData;
-    }
 
-    public void setPackagingData(ArrayList packagingData) {
-        this.packagingData = packagingData;
-    }
 
 
 }
