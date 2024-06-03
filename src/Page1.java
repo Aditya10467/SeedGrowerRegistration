@@ -1,7 +1,13 @@
 import javax.swing.*;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Page1 extends JPanel {
     static JTextField nameField, pinField, emailField, mobileField, alternateMobileField;
@@ -200,14 +206,107 @@ public class Page1 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, identificationLabel, 40, SpringLayout.SOUTH, mobileField);
         layout.putConstraint(SpringLayout.WEST, identificationLabel, leftMargin, SpringLayout.WEST, this);
 
-        identificationField = new JComboBox<>();
+         = new JComboBox<>();
         identificationField.addItem("Aadhar Card");
         identificationField.addItem("PAN Card");
-        identificationField.setBackground(new Color(255,255,255));
+        identificationField.setBackground(new Color(255, 255, 255));
         identificationField.setPreferredSize(new Dimension(450, 30));
+        identificationField.setSelectedItem(null);
         add(identificationField);
         layout.putConstraint(SpringLayout.NORTH, identificationField, 5, SpringLayout.SOUTH, identificationLabel);
         layout.putConstraint(SpringLayout.WEST, identificationField, leftMargin, SpringLayout.WEST, this);
+
+        // Create the additional label, text field, and validation message label
+        JLabel additionalInfoLabel = new JLabel();
+        layout.putConstraint(SpringLayout.NORTH, additionalInfoLabel, 0, SpringLayout.NORTH, identificationLabel);
+        layout.putConstraint(SpringLayout.WEST, additionalInfoLabel, 500 + leftMargin, SpringLayout.WEST, this);
+        add(additionalInfoLabel);
+
+        JTextField additionalInfoField = new JTextField();
+        additionalInfoField.setPreferredSize(new Dimension(450, 30));
+        layout.putConstraint(SpringLayout.NORTH, additionalInfoField, 5, SpringLayout.SOUTH, additionalInfoLabel);
+        layout.putConstraint(SpringLayout.WEST, additionalInfoField, 500 + leftMargin, SpringLayout.WEST, this);
+        add(additionalInfoField);
+
+        JLabel validationMessageLabel = new JLabel();
+        validationMessageLabel.setForeground(Color.RED);
+        layout.putConstraint(SpringLayout.NORTH, validationMessageLabel, 5, SpringLayout.SOUTH, additionalInfoField);
+        layout.putConstraint(SpringLayout.WEST, validationMessageLabel, 500+leftMargin, SpringLayout.WEST, this);
+        add(validationMessageLabel);
+
+        // Initially, hide the label, text field, and validation message label
+        additionalInfoLabel.setVisible(false);
+        additionalInfoField.setVisible(false);
+        validationMessageLabel.setVisible(false);
+
+        // Add ActionListener to the combo box
+        identificationField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedItem = (String) identificationField.getSelectedItem();
+                if ("Aadhar Card".equals(selectedItem) || "PAN Card".equals(selectedItem)) {
+                    additionalInfoLabel.setText(selectedItem + " Number");
+                    additionalInfoLabel.setVisible(true);
+                    additionalInfoField.setVisible(true);
+                    additionalInfoField.setText("");
+                    validationMessageLabel.setVisible(false);
+
+                    // Apply the document filter if Aadhar Card is selected
+                    if ("Aadhar Card".equals(selectedItem)) {
+                        ((AbstractDocument) additionalInfoField.getDocument()).setDocumentFilter(new AadharCardDocumentFilter());
+                    } else {
+                        ((AbstractDocument) additionalInfoField.getDocument()).setDocumentFilter(null);
+                    }
+                } else {
+                    additionalInfoLabel.setVisible(false);
+                    additionalInfoField.setVisible(false);
+                    validationMessageLabel.setVisible(false);
+                }
+            }
+        });
+
+        // Add ActionListener to the additional text field for validation
+        additionalInfoField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedItem = (String) identificationField.getSelectedItem();
+                String input = additionalInfoField.getText();
+                if ("PAN Card".equals(selectedItem)) {
+                    String panRegex = "[A-Z]{5}[0-9]{4}[A-Z]{1}";
+                    Pattern pattern = Pattern.compile(panRegex);
+                    Matcher matcher = pattern.matcher(input);
+
+                    if (matcher.matches()) {
+                        validationMessageLabel.setText("Valid PAN Card Number");
+                        validationMessageLabel.setForeground(Color.GREEN);
+                    } else {
+                        validationMessageLabel.setText("Invalid PAN Card Number");
+                        validationMessageLabel.setForeground(Color.RED);
+                    }
+                    validationMessageLabel.setVisible(true);
+                } else if ("Aadhar Card".equals(selectedItem)) {
+                    String aadharRegex = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
+                    Pattern pattern = Pattern.compile(aadharRegex);
+                    Matcher matcher = pattern.matcher(input);
+
+                    if (matcher.matches()) {
+                        validationMessageLabel.setText("Valid Aadhar Card Number");
+                        validationMessageLabel.setForeground(Color.GREEN);
+                    } else {
+                        validationMessageLabel.setText("Invalid Aadhar Card Number");
+                        validationMessageLabel.setForeground(Color.RED);
+                    }
+                    validationMessageLabel.setVisible(true);
+                } else {
+                    validationMessageLabel.setVisible(false);
+                }
+            }
+        });
+
+
+
+
+
 
         // Next Button
         JButton nextButton = new JButton("Next");
@@ -250,5 +349,44 @@ public class Page1 extends JPanel {
 
     public String getTextField1Value() {
         return nameField.getText();
+    }
+}
+class AadharCardDocumentFilter extends DocumentFilter {
+    @Override
+    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+        if (string == null) return;
+        replace(fb, offset, 0, string, attr);
+    }
+
+    @Override
+    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+        if (text == null) return;
+
+        StringBuilder sb = new StringBuilder(fb.getDocument().getText(0, fb.getDocument().getLength()));
+        sb.replace(offset, offset + length, text);
+
+        String textWithSpaces = formatAadharNumber(sb.toString());
+        fb.replace(0, fb.getDocument().getLength(), textWithSpaces, attrs);
+    }
+
+    @Override
+    public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
+        StringBuilder sb = new StringBuilder(fb.getDocument().getText(0, fb.getDocument().getLength()));
+        sb.delete(offset, offset + length);
+
+        String textWithSpaces = formatAadharNumber(sb.toString());
+        fb.replace(0, fb.getDocument().getLength(), textWithSpaces, null);
+    }
+
+    private String formatAadharNumber(String input) {
+        input = input.replaceAll("\\s", ""); // Remove all existing spaces
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < input.length(); i++) {
+            if (i > 0 && (i % 4 == 0) && i < 12) {
+                sb.append(' ');
+            }
+            sb.append(input.charAt(i));
+        }
+        return sb.toString();
     }
 }
