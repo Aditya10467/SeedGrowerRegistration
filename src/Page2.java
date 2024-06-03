@@ -589,9 +589,7 @@ public class Page2 extends JPanel implements ActionListener  {
             for(Data data:dataList){
                 System.out.println(data);
             }
-            for(PackagingDetails details:packagingList){
-                System.out.println(packagingList);
-            }
+
 //            System.out.println("Hello World");
         }
 

@@ -139,11 +139,11 @@ public class EditData {
         String challanDetails = Page2.challanDetailsArea.getText();
         String weekOfSowing = (String) Page2.weekOfSowingComboBox.getSelectedItem();
         String monthOfSowing = (String) Page2.monthOfSowingComboBox.getSelectedItem();
-        ArrayList packagingList=Page2.packagingList;
+        //ArrayList packagingList=Page2.packagingList;
 
 
 
-        CropData newCropData = new CropData(sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area, tagNumbers, packagingDetails, challanDetails, weekOfSowing, monthOfSowing,packagingList);
+        CropData newCropData = new CropData(sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area, tagNumbers, packagingDetails, challanDetails, weekOfSowing, monthOfSowing);
         Page2.cropDataList.add(newCropData);
 
         // Update the table model with the new data
