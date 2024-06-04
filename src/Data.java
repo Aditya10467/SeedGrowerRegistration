@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Data {
+public class Data implements Serializable {
 
     // Scalar properties from Page1
     private String name;
@@ -16,12 +17,13 @@ public class Data {
     private String block;
     private String mouza;
     private String identificationType;
+    private String identificationNumber;
 
     // Navigational property referring to CropData
     private ArrayList<CropData> cropDataList;
 
     // Constructor
-    public Data(String name,String fatherOrHusbandOrOrganisation,String relation, String houseNoOrLandMark, String district, String block, String mouza,String pinCode, String email, String mobile, String alternateMobile, String identificationType, ArrayList<CropData> cropDataList) {
+    public Data(String name,String fatherOrHusbandOrOrganisation,String relation, String houseNoOrLandMark, String district, String block, String mouza,String pinCode, String email, String mobile, String alternateMobile, String identificationType,String identificationNumber, ArrayList<CropData> cropDataList) {
         this.name = name;
         this.pinCode = pinCode;
         this.email = email;
@@ -34,6 +36,7 @@ public class Data {
         this.block = block;
         this.mouza = mouza;
         this.identificationType = identificationType;
+        this.identificationNumber=identificationNumber;
         this.cropDataList = cropDataList;
     }
 
@@ -105,6 +108,7 @@ public class Data {
                 ", mobile='" + mobile + '\'' +
                 ", alternateMobile='" + alternateMobile + '\'' +
                 ", identificationType='" + identificationType + '\'' +
+                ", identification='" + identificationNumber + '\'' +
                 ", cropDataList=" + cropDataList +
                 '}';
     }

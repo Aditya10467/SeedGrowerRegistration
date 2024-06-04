@@ -1,0 +1,60 @@
+[
+  {
+    "name": "knight",
+    "pinCode": "",
+    "email": "",
+    "mobile": "",
+    "alternateMobile": "",
+    "fatherOrHusbandOrOrganisation": "",
+    "houseNoOrLandMark": "",
+    "relation": "Father",
+    "identificationNumber": "",
+    "cropList": [
+      {
+        "sourceOfSeeds": "12",
+        "plotNo": "",
+        "area": "",
+        "tagNumbers": "",
+        "packagingDetails": "",
+        "challanDetails": ""
+      },
+      {
+        "sourceOfSeeds": "13",
+        "plotNo": "",
+        "area": "",
+        "tagNumbers": "",
+        "packagingDetails": "",
+        "challanDetails": ""
+      }
+    ]
+  },
+  {
+    "name": "boss",
+    "pinCode": "",
+    "email": "",
+    "mobile": "",
+    "alternateMobile": "",
+    "fatherOrHusbandOrOrganisation": "",
+    "houseNoOrLandMark": "",
+    "relation": "Father",
+    "identificationNumber": "",
+    "cropDataList": [
+      {
+        "sourceOfSeeds": "14",
+        "plotNo": "",
+        "area": "",
+        "tagNumbers": "",
+        "packagingDetails": "",
+        "challanDetails": ""
+      },
+      {
+        "sourceOfSeeds": "15",
+        "plotNo": "",
+        "area": "",
+        "tagNumbers": "",
+        "packagingDetails": "",
+        "challanDetails": ""
+      }
+    ]
+  }
+]
