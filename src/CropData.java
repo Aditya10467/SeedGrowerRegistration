@@ -18,7 +18,7 @@ public class CropData {
     String weekofSowing;
     String monthOfSowing;
 
-    ArrayList packagingData;
+    ArrayList<PackagingDetails> packagingList;
 
 
 
@@ -39,6 +39,8 @@ public class CropData {
         this.challanDetails = challanDetails;
         this.weekofSowing = weekofSowing;
         this.monthOfSowing = monthOfSowing;
+        this.packagingList=packagingList;
+
     }
 
     public String getWeekofSowing() {
@@ -74,6 +76,9 @@ public class CropData {
                 ", tagNumbers='" + tagNumbers + '\'' +
                 ", packagingDetails='" + packagingDetails + '\'' +
                 ", challanDetails='" + challanDetails + '\'' +
+                ", monthOfSowing='" + monthOfSowing + '\'' +
+                ", weekOfSowing='" + weekofSowing + '\'' +
+                ", packagings='" + packagingList + '\'' +
                 '}';
     }
 

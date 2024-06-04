@@ -14,10 +14,14 @@ public class SaveData {
             String mobile=Page1.mobileField.getText();
             String alternateMobile=Page1.alternateMobileField.getText();
             String identification=(String)Page1.identificationField.getSelectedItem();
+            String identificationNumber= Page1.additionalInfoField.getText();
             ArrayList cropDataList= Page2.cropDataList;
 
-            Data newData=new Data(name,fatherOrHusband,relation,houseNo,district,block,mouza,pin,email,mobile,alternateMobile,identification,cropDataList);
+            Data newData=new Data(name,fatherOrHusband,relation,houseNo,district,block,mouza,pin,email,mobile,alternateMobile,identification,identificationNumber,cropDataList);
             Page2.dataList.add(newData);
+
+            JsonFileUtil.saveData(newData);
+            System.out.println(JsonFileUtil.getAllData());
 
     }
 
