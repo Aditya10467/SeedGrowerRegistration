@@ -1,10 +1,12 @@
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Data implements Serializable {
 
-    // Scalar properties from Page1
+    // Scalar properties from Page1 ;
     private String name;
     private String pinCode;
     private String email;
@@ -17,9 +19,11 @@ public class Data implements Serializable {
     private String block;
     private String mouza;
     private String identificationType;
+
     private String identificationNumber;
 
     // Navigational property referring to CropData
+    @SerializedName("cropList")
     private ArrayList<CropData> cropDataList;
 
     // Constructor
@@ -109,7 +113,7 @@ public class Data implements Serializable {
                 ", alternateMobile='" + alternateMobile + '\'' +
                 ", identificationType='" + identificationType + '\'' +
                 ", identification='" + identificationNumber + '\'' +
-                ", cropDataList=" + cropDataList +
+                ", cropList= '" + cropDataList +
                 '}';
     }
 
