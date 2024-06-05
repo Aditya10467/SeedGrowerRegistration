@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class EditData {
-
+    static ArrayList<PackagingDetails> packagingDetailsList = new ArrayList<>();
 
     void editData(int rowIndex) {
         // Remove existing action listeners to avoid multiple triggers
@@ -32,6 +32,10 @@ public class EditData {
         String tagnumbers = cropData.getTagNumbers();
         String challanDetails = cropData.getChallanDetails();
         String packagingDetails = cropData.getPackagingDetails();
+
+        // Clear and populate the packagingDetailsList from the CropData
+        packagingDetailsList.clear();
+        packagingDetailsList.addAll(cropData.getPackagingList());
 
         // Set the form fields with the selected crop data
         Page2.sourceOfSeedsField.setText(source);
@@ -95,6 +99,7 @@ public class EditData {
         editedCropData.setTagNumbers(tagNumbers);
         editedCropData.setPackagingDetails(packagingDetails);
         editedCropData.setChallanDetails(challanDetails);
+        editedCropData.setPackagingList(packagingDetailsList); // Set updated packaging list
 
         // Update the table model with the new data
         Page2.tableModel.setValueAt(sourceOfSeeds, rowIndex, 0);
@@ -139,17 +144,36 @@ public class EditData {
         String challanDetails = Page2.challanDetailsArea.getText();
         String weekOfSowing = (String) Page2.weekOfSowingComboBox.getSelectedItem();
         String monthOfSowing = (String) Page2.monthOfSowingComboBox.getSelectedItem();
-        //ArrayList packagingList=Page2.packagingList;
 
-
+        ArrayList<PackagingDetails> packagingList = parsePackagingDetails(packagingDetails);
 
         CropData newCropData = new CropData(sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area, tagNumbers, packagingDetails, challanDetails, weekOfSowing, monthOfSowing);
+        newCropData.setPackagingList(packagingList); // Set packaging list
         Page2.cropDataList.add(newCropData);
 
         // Update the table model with the new data
         Page2.tableModel.addRow(new Object[]{sourceOfSeeds, roUnitOffice, crop, variety, sourceClass, classToBeProduced, plotNo, district, block, mouza, area, "Edit", "Remove"});
 
         clearAllFields();
+    }
+
+    ArrayList<PackagingDetails> parsePackagingDetails(String packagingDetails) {
+        ArrayList<PackagingDetails> packagingList = new ArrayList<>();
+        String[] lines = packagingDetails.split("\n");
+        int weight = 0;
+        int noOfUnits = 0;
+        for (String line : lines) {
+            if (line.startsWith("Weight per bag :")) {
+                weight = Integer.parseInt(line.replace("Weight per bag :", "").trim());
+            } else if (line.startsWith("No of bags:")) {
+                noOfUnits = Integer.parseInt(line.replace("No of bags:", "").trim());
+                packagingList.add(new PackagingDetails(weight, noOfUnits));
+            }
+        }
+        if (weight > 0 && noOfUnits > 0) {
+            packagingList.add(new PackagingDetails(weight, noOfUnits));
+        }
+        return packagingList;
     }
 
     void shiftRows(DefaultTableModel model, int index) {
@@ -162,7 +186,6 @@ public class EditData {
         Page2.cropDataList.remove(model.getRowCount() - 1);
         model.removeRow(model.getRowCount() - 1);
     }
-
 
     void removeRow(JTable table, DefaultTableModel model, int selectedRow) {
         if (selectedRow != -1 && !table.isEditing()) {
@@ -212,10 +235,11 @@ public class EditData {
         Page2.dateField.setDate(null);
     }
 
-    void addPackaging(int weight,int noOfBags){
-        PackagingDetails p=new PackagingDetails(weight,noOfBags);
-        Page2.packagingList.add(p);
+    static void addPackage() {
+        int weightPerBag = Integer.parseInt(Page2.weightPerBagField.getText());
+        int numberOfBags = Integer.parseInt(Page2.numberOfBagsField.getText());
+
+        PackagingDetails packagingDetails = new PackagingDetails(weightPerBag, numberOfBags);
+        packagingDetailsList.add(packagingDetails);
     }
-
-
 }
