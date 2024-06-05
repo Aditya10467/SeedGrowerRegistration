@@ -206,7 +206,7 @@ public class Page1 extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, identificationLabel, 40, SpringLayout.SOUTH, mobileField);
         layout.putConstraint(SpringLayout.WEST, identificationLabel, leftMargin, SpringLayout.WEST, this);
 
-         = new JComboBox<>();
+        identificationField = new JComboBox<>();
         identificationField.addItem("Aadhar Card");
         identificationField.addItem("PAN Card");
         identificationField.setBackground(new Color(255, 255, 255));
