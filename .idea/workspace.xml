@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="07c591b5-50ab-42e8-8e7b-12451abdc3fe" name="Changes" comment="Adds json functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CropData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CropData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EditData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EditData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PackagingDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PackagingDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Page2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Page1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SaveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SaveData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

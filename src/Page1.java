@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Page1 extends JPanel {
-    static JTextField nameField, pinField, emailField, mobileField, alternateMobileField;
+    static JTextField nameField, pinField, emailField, mobileField, alternateMobileField,additionalInfoField;
     static JTextField fatherField;
     static JTextField houseField;
     static JComboBox<String> relationField, districtField, blockField, mouzaField, identificationField;
@@ -133,7 +133,7 @@ public class Page1 extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedBlock=(String) blockField.getSelectedItem();
-                    l.populateMouzaField(selectedBlock);
+                l.populateMouzaField(selectedBlock);
 
             }
         });
@@ -222,7 +222,7 @@ public class Page1 extends JPanel {
         layout.putConstraint(SpringLayout.WEST, additionalInfoLabel, 500 + leftMargin, SpringLayout.WEST, this);
         add(additionalInfoLabel);
 
-        JTextField additionalInfoField = new JTextField();
+        additionalInfoField = new JTextField();
         additionalInfoField.setPreferredSize(new Dimension(450, 30));
         layout.putConstraint(SpringLayout.NORTH, additionalInfoField, 5, SpringLayout.SOUTH, additionalInfoLabel);
         layout.putConstraint(SpringLayout.WEST, additionalInfoField, 500 + leftMargin, SpringLayout.WEST, this);
@@ -278,7 +278,7 @@ public class Page1 extends JPanel {
 
                     if (matcher.matches()) {
                         validationMessageLabel.setText("Valid PAN Card Number");
-                        validationMessageLabel.setForeground(Color.GREEN);
+                        validationMessageLabel.setForeground(new Color(52, 180, 0));
                     } else {
                         validationMessageLabel.setText("Invalid PAN Card Number");
                         validationMessageLabel.setForeground(Color.RED);
@@ -291,7 +291,7 @@ public class Page1 extends JPanel {
 
                     if (matcher.matches()) {
                         validationMessageLabel.setText("Valid Aadhar Card Number");
-                        validationMessageLabel.setForeground(Color.GREEN);
+                        validationMessageLabel.setForeground(new Color(52, 180, 0));
                     } else {
                         validationMessageLabel.setText("Invalid Aadhar Card Number");
                         validationMessageLabel.setForeground(Color.RED);
