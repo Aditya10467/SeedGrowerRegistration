@@ -399,8 +399,7 @@ public class Page2 extends JPanel implements ActionListener  {
                 }else{
                     int bagWeight=Integer.parseInt(weightPerBagField.getText());
                     int noOfBags=Integer.parseInt(numberOfBagsField.getText());
-                    PackagingDetails p=new PackagingDetails(bagWeight,noOfBags);
-                    packagingList.add(p);
+                    EditData.addPackage();
 //                    EditData editData=new EditData();
 //                    editData.addPackaging(bagWeight,noOfBags);
                     //String packagingDetails="{"+bagWeight+","+noOfBags+"}";

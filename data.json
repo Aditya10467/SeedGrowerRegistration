@@ -11,20 +11,22 @@
     "identificationNumber": "",
     "cropList": [
       {
-        "sourceOfSeeds": "12",
+        "sourceOfSeeds": "",
         "plotNo": "",
         "area": "",
         "tagNumbers": "",
-        "packagingDetails": "",
-        "challanDetails": ""
+        "packagingDetails": "Weight per bag :12\nNo of bags: 12",
+        "challanDetails": "",
+        "packagingList": []
       },
       {
-        "sourceOfSeeds": "13",
+        "sourceOfSeeds": "",
         "plotNo": "",
         "area": "",
         "tagNumbers": "",
-        "packagingDetails": "",
-        "challanDetails": ""
+        "packagingDetails": "Weight per bag :32\nNo of bags: 32",
+        "challanDetails": "",
+        "packagingList": []
       }
     ]
   },
@@ -38,22 +40,186 @@
     "houseNoOrLandMark": "",
     "relation": "Father",
     "identificationNumber": "",
-    "cropDataList": [
+    "cropList": [
       {
-        "sourceOfSeeds": "14",
+        "sourceOfSeeds": "",
         "plotNo": "",
         "area": "",
         "tagNumbers": "",
-        "packagingDetails": "",
-        "challanDetails": ""
+        "packagingDetails": "Weight per bag :12\nNo of bags: 12",
+        "challanDetails": "",
+        "packagingList": [
+          {
+            "weight": 12,
+            "noOfUnits": 12
+          }
+        ]
       },
       {
-        "sourceOfSeeds": "15",
+        "sourceOfSeeds": "",
         "plotNo": "",
         "area": "",
         "tagNumbers": "",
-        "packagingDetails": "",
-        "challanDetails": ""
+        "packagingDetails": "Weight per bag :13\nNo of bags: 13",
+        "challanDetails": "",
+        "packagingList": [
+          {
+            "weight": 13,
+            "noOfUnits": 13
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "king",
+    "pinCode": "",
+    "email": "",
+    "mobile": "",
+    "alternateMobile": "",
+    "fatherOrHusbandOrOrganisation": "",
+    "houseNoOrLandMark": "",
+    "relation": "Father",
+    "identificationNumber": "",
+    "cropList": [
+      {
+        "sourceOfSeeds": "",
+        "plotNo": "",
+        "area": "",
+        "tagNumbers": "",
+        "packagingDetails": "Weight per bag :12\nNo of bags: 32",
+        "challanDetails": "",
+        "packagingList": [
+          {
+            "weight": 12,
+            "noOfUnits": 30
+          },
+          {
+            "weight": 12,
+            "noOfUnits": 32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "queen",
+    "pinCode": "",
+    "email": "",
+    "mobile": "",
+    "alternateMobile": "",
+    "fatherOrHusbandOrOrganisation": "",
+    "houseNoOrLandMark": "",
+    "relation": "Father",
+    "identificationNumber": "",
+    "cropList": [
+      {
+        "sourceOfSeeds": "",
+        "plotNo": "",
+        "area": "",
+        "tagNumbers": "",
+        "packagingDetails": "Weight per bag :90\nNo of bags: 90",
+        "challanDetails": "",
+        "packagingList": [
+          {
+            "weight": 100,
+            "noOfUnits": 100
+          },
+          {
+            "weight": 100,
+            "noOfUnits": 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "knight1",
+    "pinCode": "",
+    "email": "",
+    "mobile": "",
+    "alternateMobile": "",
+    "fatherOrHusbandOrOrganisation": "",
+    "houseNoOrLandMark": "",
+    "relation": "Father",
+    "identificationNumber": "",
+    "cropList": [
+      {
+        "sourceOfSeeds": "",
+        "plotNo": "",
+        "area": "",
+        "tagNumbers": "",
+        "packagingDetails": "Weight per bag :91\nNo of bags: 91",
+        "challanDetails": "",
+        "packagingList": [
+          {
+            "weight": 91,
+            "noOfUnits": 91
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "knight1",
+    "pinCode": "",
+    "email": "",
+    "mobile": "",
+    "alternateMobile": "",
+    "fatherOrHusbandOrOrganisation": "",
+    "houseNoOrLandMark": "",
+    "relation": "Father",
+    "identificationNumber": "",
+    "cropList": [
+      {
+        "sourceOfSeeds": "",
+        "plotNo": "",
+        "area": "",
+        "tagNumbers": "",
+        "packagingDetails": "Weight per bag :91\nNo of bags: 91",
+        "challanDetails": "",
+        "packagingList": [
+          {
+            "weight": 91,
+            "noOfUnits": 91
+          }
+        ]
+      },
+      {
+        "sourceOfSeeds": "",
+        "plotNo": "",
+        "area": "",
+        "tagNumbers": "",
+        "packagingDetails": "Weight per bag :900\nNo of bags: 900",
+        "challanDetails": "",
+        "packagingList": [
+          {
+            "weight": 900,
+            "noOfUnits": 900
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "",
+    "pinCode": "",
+    "email": "",
+    "mobile": "",
+    "alternateMobile": "",
+    "fatherOrHusbandOrOrganisation": "",
+    "houseNoOrLandMark": "",
+    "relation": "Father",
+    "identificationNumber": "",
+    "cropList": [
+      {
+        "sourceOfSeeds": "",
+        "plotNo": "",
+        "area": "",
+        "tagNumbers": "",
+        "packagingDetails": "Weight per bag: 12   No of bags: 12,\nWeight per bag: 12   No of bags: 13",
+        "challanDetails": "",
+        "packagingList": []
       }
     ]
   }

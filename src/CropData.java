@@ -39,8 +39,16 @@ public class CropData {
         this.challanDetails = challanDetails;
         this.weekofSowing = weekofSowing;
         this.monthOfSowing = monthOfSowing;
-        this.packagingList=packagingList;
+        this.packagingList = new ArrayList<>();
 
+    }
+
+    public ArrayList<PackagingDetails> getPackagingList() {
+        return packagingList;
+    }
+
+    public void setPackagingList(ArrayList<PackagingDetails> packagingList) {
+        this.packagingList = packagingList;
     }
 
     public String getWeekofSowing() {
