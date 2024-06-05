@@ -226,10 +226,6 @@ public class Page2 extends JPanel implements ActionListener  {
             }
         });
 
-
-
-
-
         JLabel mouzaLabel = new JLabel("Mouza:");
         add(mouzaLabel);
         layout.putConstraint(SpringLayout.NORTH, mouzaLabel, 0, SpringLayout.NORTH, plotNoLabel);
@@ -283,7 +279,6 @@ public class Page2 extends JPanel implements ActionListener  {
         add(addTagButton);
         layout.putConstraint(SpringLayout.NORTH, addTagButton, 5, SpringLayout.SOUTH, tagNumberLabel);
         layout.putConstraint(SpringLayout.WEST, addTagButton, 420 + leftMargin, SpringLayout.WEST, this);
-
 
 
         JLabel tagNumberAreaLabel = new JLabel("Added Tag Number:");
@@ -404,8 +399,10 @@ public class Page2 extends JPanel implements ActionListener  {
                 }else{
                     int bagWeight=Integer.parseInt(weightPerBagField.getText());
                     int noOfBags=Integer.parseInt(numberOfBagsField.getText());
-                    EditData editData=new EditData();
-                    editData.addPackaging(bagWeight,noOfBags);
+                    PackagingDetails p=new PackagingDetails(bagWeight,noOfBags);
+                    packagingList.add(p);
+//                    EditData editData=new EditData();
+//                    editData.addPackaging(bagWeight,noOfBags);
                     //String packagingDetails="{"+bagWeight+","+noOfBags+"}";
 
                     if (packagingArea.getText().isEmpty()) {
