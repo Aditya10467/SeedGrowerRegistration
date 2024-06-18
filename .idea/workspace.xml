@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07c591b5-50ab-42e8-8e7b-12451abdc3fe" name="Changes" comment="Adds json functionality">
+    <list default="true" id="07c591b5-50ab-42e8-8e7b-12451abdc3fe" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Page1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SaveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SaveData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Page2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717483892916</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="update">
+      <created>1717583525871</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1717583525871</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -189,6 +196,7 @@
     <MESSAGE value="Adds Data and packagingdetails class" />
     <MESSAGE value="Removes packagingData arraylist" />
     <MESSAGE value="Adds json functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adds json functionality" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>

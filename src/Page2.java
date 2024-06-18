@@ -585,6 +585,10 @@ public class Page2 extends JPanel implements ActionListener  {
             for(Data data:dataList){
                 System.out.println(data);
             }
+            JOptionPane.showMessageDialog(this,
+                    "Crop details are saved!",
+                    "Save Successful",
+                    JOptionPane.INFORMATION_MESSAGE);
 
 //            System.out.println("Hello World");
         }
